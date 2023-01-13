@@ -21,7 +21,20 @@ class DrugDetailPage extends StatelessWidget {
             style: const TextStyle(fontSize: 24),
           ),
           Divider(
+            thickness: 1,
             height: 32,
+          ),
+          Row(
+            children: [
+              Text(
+                'Barkod: ',
+                style: const TextStyle(fontWeight: FontWeight.bold),
+              ),
+              Text(drug.barkod!),
+            ],
+          ),
+          SizedBox(
+            height: 16,
           ),
           Row(
             children: [
