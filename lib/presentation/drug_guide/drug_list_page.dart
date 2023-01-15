@@ -1,5 +1,5 @@
 import 'package:farmadex/model/Drug/Drug_model.dart';
-import 'package:farmadex/view/drug_detail_page.dart';
+import 'package:farmadex/presentation/drug_detail/drug_detail_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';

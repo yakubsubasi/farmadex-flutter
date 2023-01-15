@@ -1,7 +1,5 @@
 import 'package:farmadex/model/Drug/Drug_model.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/container.dart';
-import 'package:flutter/src/widgets/framework.dart';
 
 class DrugDetailPage extends StatelessWidget {
   final Drug drug;

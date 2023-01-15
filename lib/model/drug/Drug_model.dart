@@ -1,3 +1,5 @@
+// ignore_for_file: file_names, depend_on_referenced_packages
+
 import 'package:json_annotation/json_annotation.dart';
 
 part 'Drug_model.g.dart';
@@ -6,7 +8,7 @@ part 'Drug_model.g.dart';
 
 @JsonSerializable()
 class Drug {
-  String? barkod;
+  int? barkod;
   String? atcKodu;
   String? atcAdi;
   String? ilacAdi;
@@ -27,5 +29,14 @@ class Drug {
   @override
   String toString() {
     return 'Drug{barkod: $barkod, atcKodu: $atcKodu, atcAdi: $atcAdi, ilacAdi: $ilacAdi, firmaAdi: $firmaAdi, fiyat: $fiyat}';
+  }
+
+  Drug.fromMap(Map<String, dynamic> map) {
+    barkod = map['barkod'];
+    atcKodu = map['atc_kodu'];
+    atcAdi = map['atc_adi'];
+    ilacAdi = map['ilac_adi'];
+    firmaAdi = map['firma_adi'];
+    fiyat = map['fiyat'];
   }
 }

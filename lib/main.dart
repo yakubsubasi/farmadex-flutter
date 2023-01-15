@@ -1,9 +1,16 @@
+import 'package:farmadex/Consts/supabase_key.dart';
 import 'package:farmadex/view/landing_page.dart';
 import 'package:flutter/material.dart';
+import 'package:supabase_flutter/supabase_flutter.dart';
 
-import 'view/search_page.dart';
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
 
-void main() {
+  await Supabase.initialize(
+    url: SupabaseConsts.SUPABASE_URL,
+    anonKey: SupabaseConsts.ANON_KEY,
+  );
+
   runApp(const MyApp());
 }
 
