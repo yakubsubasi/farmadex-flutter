@@ -42,3 +42,4 @@ app.*.map.json
 /android/app/debug
 /android/app/profile
 /android/app/release
+lib/consts/supabase_key.dart
