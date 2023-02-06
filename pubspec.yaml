@@ -42,6 +42,7 @@ dependencies:
   kartal: ^0.0.1
   http: ^0.13.5
   supabase_flutter: ^1.2.2
+  supabase_auth_ui: ^0.0.1
 
 dev_dependencies:
   flutter_test:

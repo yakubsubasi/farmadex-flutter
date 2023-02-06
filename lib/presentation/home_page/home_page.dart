@@ -1,8 +1,9 @@
 import 'package:farmadex/presentation/drug_guide/search_page.dart';
 import 'package:flutter/material.dart';
+import 'package:supabase_auth_ui/supabase_auth_ui.dart';
 
-class LandingPage extends StatelessWidget {
-  const LandingPage({super.key});
+class HomePage extends StatelessWidget {
+  const HomePage({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -43,25 +44,33 @@ class LandingPage extends StatelessWidget {
                   ),
                 ),
                 ElevatedButton(
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: Colors.teal[200],
-                      foregroundColor: Colors.black,
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(32.0),
-                      ),
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: Colors.teal[200],
+                    foregroundColor: Colors.black,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(32.0),
                     ),
-                    onPressed: () => Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => const SearchPage())),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: const [
-                        Text('Başla'),
-                        SizedBox(width: 10, height: 40),
-                        Icon(Icons.arrow_forward)
-                      ],
-                    ))
+                  ),
+                  onPressed: () => Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => const SearchPage())),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: const [
+                      Text('Başla'),
+                      SizedBox(width: 10, height: 40),
+                      Icon(Icons.arrow_forward)
+                    ],
+                  ),
+                ),
+                //log out button
+                ElevatedButton(
+                    onPressed: () {
+                      Supabase.instance.client.auth.signOut();
+                      Navigator.pushNamed(context, '/');
+                    },
+                    child: Text('Çıkış Yap'))
               ],
             ),
           ),

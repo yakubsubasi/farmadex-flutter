@@ -1,5 +1,9 @@
-import 'package:farmadex/Consts/supabase_key.dart';
-import 'package:farmadex/view/landing_page.dart';
+import 'package:farmadex/consts/supabase_key.dart';
+import 'package:farmadex/presentation/auth/forgot_password.dart';
+import 'package:farmadex/presentation/auth/sign_in.dart';
+import 'package:farmadex/presentation/auth/sign_up.dart';
+import 'package:farmadex/presentation/auth/update_password.dart';
+import 'package:farmadex/presentation/home_page/home_page.dart';
 import 'package:flutter/material.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
@@ -21,26 +25,19 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      routes: {
+        '/': (context) => const SignUp(),
+        '/home': (context) => const HomePage(),
+        '/sign_up': (context) => const SignUp(),
+        '/sign_in': (context) => const SignIn(),
+        '/forgot_password': (context) => const ForgotPassword(),
+        '/update_password': (context) => const UpdatePassword(),
+      },
       debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
       theme: ThemeData(
         useMaterial3: true,
         primarySwatch: Colors.blue,
-      ),
-      home: const LandingPage(),
-      // material 3 enabled
-    );
-  }
-}
-
-class HomePage extends StatelessWidget {
-  const HomePage({Key? key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('Hello World'),
       ),
     );
   }

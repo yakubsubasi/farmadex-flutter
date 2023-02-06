@@ -18,39 +18,39 @@ class DrugDetailPage extends StatelessWidget {
             drug.ilacAdi!,
             style: const TextStyle(fontSize: 24),
           ),
-          Divider(
+          const Divider(
             height: 32,
           ),
           Row(
             children: [
-              Text(
+              const Text(
                 'ATC adı: ',
-                style: const TextStyle(fontWeight: FontWeight.bold),
+                style: TextStyle(fontWeight: FontWeight.bold),
               ),
               Text(drug.atcAdi!),
             ],
           ),
-          SizedBox(
+          const SizedBox(
             height: 16,
           ),
           Row(
             children: [
-              Text(
+              const Text(
                 'ATC kodu: ',
-                style: const TextStyle(fontWeight: FontWeight.bold),
+                style: TextStyle(fontWeight: FontWeight.bold),
               ),
               Text(drug.atcKodu!),
             ],
           ),
-          SizedBox(
+          const SizedBox(
             height: 16,
           ),
-          Text(
+          const Text(
             'Firma: ',
-            style: const TextStyle(fontWeight: FontWeight.bold),
+            style: TextStyle(fontWeight: FontWeight.bold),
           ),
           Text(drug.firmaAdi!, style: const TextStyle(fontSize: 16)),
-          SizedBox(
+          const SizedBox(
             height: 16,
           ),
           Container(
@@ -62,13 +62,13 @@ class DrugDetailPage extends StatelessWidget {
             child: Row(
               mainAxisSize: MainAxisSize.min,
               children: [
-                Text(
+                const Text(
                   'Fiyat: ',
-                  style: const TextStyle(fontWeight: FontWeight.bold),
+                  style: TextStyle(fontWeight: FontWeight.bold),
                 ),
                 Text(drug.fiyat!, style: const TextStyle(fontSize: 16)),
                 // add euro icon
-                Icon(Icons.euro),
+                const Icon(Icons.euro),
               ],
             ),
           ),

@@ -40,7 +40,7 @@ class _SearchPageState extends State<SearchPage> {
             slivers: [
               SliverToBoxAdapter(
                 child: Padding(
-                  padding: EdgeInsets.all(8.0),
+                  padding: const EdgeInsets.all(8.0),
                   child: TextField(
                     onChanged: (value) {},
                     decoration: const InputDecoration(
