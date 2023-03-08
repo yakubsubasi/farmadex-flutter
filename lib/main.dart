@@ -3,6 +3,7 @@ import 'package:farmadex/presentation/auth/forgot_password.dart';
 import 'package:farmadex/presentation/auth/sign_in.dart';
 import 'package:farmadex/presentation/auth/sign_up.dart';
 import 'package:farmadex/presentation/auth/update_password.dart';
+import 'package:farmadex/presentation/deneme.dart';
 import 'package:farmadex/presentation/home_page/home_page.dart';
 import 'package:flutter/material.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
@@ -26,7 +27,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       routes: {
-        '/': (context) => const SignUp(),
+        '/': (context) => const DenemeScreen(),
         '/home': (context) => const HomePage(),
         '/sign_up': (context) => const SignUp(),
         '/sign_in': (context) => const SignIn(),

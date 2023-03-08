@@ -16,6 +16,8 @@ class Disease {
     this.specialities,
     this.prescriptions,
   });
+
+  @JsonKey(name: '_id')
   String? id;
   String? name;
   List<Speciality>? specialities;

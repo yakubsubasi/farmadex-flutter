@@ -18,7 +18,7 @@ class Prescription {
   String? name;
   String? shortDescription;
   String? explanation; // Tedavi ile ilgili ek açıklama
-  bool isIlyasYolbas;
+  bool isIlyasYolbas = false;
   List<Medicine>? medicines;
 
   factory Prescription.fromJson(Map<String, dynamic> json) =>
