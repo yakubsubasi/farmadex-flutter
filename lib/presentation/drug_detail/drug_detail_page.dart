@@ -1,5 +1,7 @@
 import 'package:farmadex/model/Drug/Drug_model.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/src/widgets/container.dart';
+import 'package:flutter/src/widgets/framework.dart';
 
 class DrugDetailPage extends StatelessWidget {
   final Drug drug;
@@ -18,39 +20,39 @@ class DrugDetailPage extends StatelessWidget {
             drug.ilacAdi!,
             style: const TextStyle(fontSize: 24),
           ),
-          const Divider(
+          Divider(
             height: 32,
           ),
           Row(
             children: [
-              const Text(
+              Text(
                 'ATC adı: ',
-                style: TextStyle(fontWeight: FontWeight.bold),
+                style: const TextStyle(fontWeight: FontWeight.bold),
               ),
               Text(drug.atcAdi!),
             ],
           ),
-          const SizedBox(
+          SizedBox(
             height: 16,
           ),
           Row(
             children: [
-              const Text(
+              Text(
                 'ATC kodu: ',
-                style: TextStyle(fontWeight: FontWeight.bold),
+                style: const TextStyle(fontWeight: FontWeight.bold),
               ),
               Text(drug.atcKodu!),
             ],
           ),
-          const SizedBox(
+          SizedBox(
             height: 16,
           ),
-          const Text(
+          Text(
             'Firma: ',
-            style: TextStyle(fontWeight: FontWeight.bold),
+            style: const TextStyle(fontWeight: FontWeight.bold),
           ),
           Text(drug.firmaAdi!, style: const TextStyle(fontSize: 16)),
-          const SizedBox(
+          SizedBox(
             height: 16,
           ),
           Container(
@@ -62,13 +64,13 @@ class DrugDetailPage extends StatelessWidget {
             child: Row(
               mainAxisSize: MainAxisSize.min,
               children: [
-                const Text(
+                Text(
                   'Fiyat: ',
-                  style: TextStyle(fontWeight: FontWeight.bold),
+                  style: const TextStyle(fontWeight: FontWeight.bold),
                 ),
                 Text(drug.fiyat!, style: const TextStyle(fontSize: 16)),
                 // add euro icon
-                const Icon(Icons.euro),
+                Icon(Icons.euro),
               ],
             ),
           ),
