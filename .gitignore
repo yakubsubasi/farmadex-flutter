@@ -1,3 +1,5 @@
+
+
 # Miscellaneous
 *.class
 *.log
@@ -9,6 +11,8 @@
 .history
 .svn/
 migrate_working_dir/
+
+lib/consts/supabase_key.dart
 
 # IntelliJ related
 *.iml
