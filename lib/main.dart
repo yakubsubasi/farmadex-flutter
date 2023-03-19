@@ -1,10 +1,18 @@
+import 'package:farmadex/consts/supabase_key.dart';
 import 'package:farmadex/view/landing_page.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:supabase_flutter/supabase_flutter.dart';
 
-import 'view/search_page.dart';
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
 
-void main() {
-  runApp(const MyApp());
+  await Supabase.initialize(
+    url: SupabaseConsts.SUPABASE_URL,
+    anonKey: SupabaseConsts.ANON_KEY,
+  );
+
+  runApp(const ProviderScope(child: MyApp()));
 }
 
 class MyApp extends StatelessWidget {
