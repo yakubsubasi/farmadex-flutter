@@ -7,25 +7,25 @@ part of 'medicine_model.dart';
 // **************************************************************************
 
 Medicine _$MedicineFromJson(Map<String, dynamic> json) => Medicine(
-      id: json['id'] as String?,
+      id: json['id'] as int?,
       name: json['name'] as String?,
-      activeSubstance: json['activeSubstance'] as String?,
-      howOften: json['howOften'] as int?,
-      howMany: json['howMany'] as int?,
-      howToUse: json['howToUse'] as String?,
+      activeSubstance: json['active_substance'] as String?,
+      howOften: (json['how_often'] as num?)?.toDouble(),
+      howMany: (json['how_many'] as num?)?.toDouble(),
+      howToUse: json['how_to_use'] as String?,
       periode: json['periode'] as String?,
-      numberOfBoxes: json['numberOfBoxes'] as int?,
+      numberOfBoxes: json['number_of_boxes'] as int?,
       barkod: json['barkod'] as int?,
     );
 
 Map<String, dynamic> _$MedicineToJson(Medicine instance) => <String, dynamic>{
       'id': instance.id,
       'name': instance.name,
-      'activeSubstance': instance.activeSubstance,
-      'howOften': instance.howOften,
-      'howMany': instance.howMany,
-      'howToUse': instance.howToUse,
+      'active_substance': instance.activeSubstance,
+      'how_often': instance.howOften,
+      'how_many': instance.howMany,
+      'how_to_use': instance.howToUse,
       'periode': instance.periode,
       'barkod': instance.barkod,
-      'numberOfBoxes': instance.numberOfBoxes,
+      'number_of_boxes': instance.numberOfBoxes,
     };

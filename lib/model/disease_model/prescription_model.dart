@@ -24,4 +24,9 @@ class Prescription {
   factory Prescription.fromJson(Map<String, dynamic> json) =>
       _$PrescriptionFromJson(json);
   Map<String, dynamic> toJson() => _$PrescriptionToJson(this);
+
+  @override
+  String toString() {
+    return 'Prescription{id: $id, name: $name, shortDescription: $shortDescription, explanation: $explanation, medicines: $medicines}';
+  }
 }

@@ -11,7 +11,7 @@ part 'disease_model.g.dart';
 @JsonSerializable(explicitToJson: true)
 class Disease {
   Disease({this.id, this.name, this.specialities, this.prescriptions});
-  String? id;
+  int? id;
   String? name;
   List<Speciality>? specialities;
   List<Prescription>? prescriptions;
@@ -20,6 +20,11 @@ class Disease {
       _$DiseaseFromJson(json);
 
   Map<String, dynamic> toJson() => _$DiseaseToJson(this);
+
+  @override
+  String toString() {
+    return 'Disease{id: $id, name: $name, specialities: $specialities, prescriptions: $prescriptions}';
+  }
 }
 
 @JsonEnum()

@@ -7,7 +7,7 @@ part of 'disease_model.dart';
 // **************************************************************************
 
 Disease _$DiseaseFromJson(Map<String, dynamic> json) => Disease(
-      id: json['id'] as String?,
+      id: json['id'] as int?,
       name: json['name'] as String?,
       specialities: (json['specialities'] as List<dynamic>?)
           ?.map((e) => $enumDecode(_$SpecialityEnumMap, e))

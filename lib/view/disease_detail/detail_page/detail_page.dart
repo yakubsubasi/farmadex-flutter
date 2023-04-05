@@ -1,0 +1,51 @@
+import 'package:farmadex/view/disease_detail/detail_page/widgets/prescription_card.dart';
+import 'package:flutter/material.dart';
+
+import '../../../model/disease_model/disease_model.dart';
+
+class DiseaseDetailPage extends StatelessWidget {
+  const DiseaseDetailPage({
+    Key? key,
+    required this.disease,
+  }) : super(key: key);
+
+  final Disease disease;
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        centerTitle: true,
+        backgroundColor: Colors.transparent,
+        elevation: 0,
+        leading: IconButton(
+          color: Colors.black,
+          onPressed: () {
+            Navigator.pop(context);
+          },
+          icon: const Icon(Icons.arrow_back),
+        ),
+        title: Text(
+          disease.name ?? ' ',
+          style: const TextStyle(color: Colors.black),
+          textAlign: TextAlign.center,
+        ),
+      ),
+      body: SafeArea(
+        child: Column(
+          children: [
+            ListView.builder(
+              shrinkWrap: true,
+              itemCount: disease.prescriptions?.length ?? 0,
+              itemBuilder: (context, index) {
+                return PrescriptionCard(
+                  prescription: disease.prescriptions![index],
+                );
+              },
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}

@@ -1,5 +1,6 @@
 import 'package:farmadex/consts/supabase_key.dart';
-import 'package:farmadex/view/landing_page.dart';
+import 'package:farmadex/view/disease_detail/detail_page/detail_page.dart';
+import 'package:farmadex/view/landing_page/landing_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
@@ -28,6 +29,7 @@ class MyApp extends StatelessWidget {
         useMaterial3: true,
         primarySwatch: Colors.blue,
       ),
+
       home: const LandingPage(),
       // material 3 enabled
     );

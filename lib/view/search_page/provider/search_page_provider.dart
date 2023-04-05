@@ -1,4 +1,6 @@
+import 'package:farmadex/model/disease_model/disease_model.dart';
 import 'package:farmadex/model/disease_model/prescription_model.dart';
+import 'package:flutter/foundation.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
@@ -8,20 +10,21 @@ part 'search_page_provider.g.dart';
 // flutter packages pub run build_runner build --delete-conflicting-outputs
 
 @riverpod
-FutureOr<List<Prescription>> getPrescriptions(GetPrescriptionsRef ref) async {
+FutureOr<List<Disease>> getDiseases(GetDiseasesRef ref) async {
   final client = ref.watch(supabaseClientProvider);
-  final response = await client.from('prescriptions').select();
+  final response =
+      await client.from('diseases').select('*, prescriptions(*, medicines(*))');
 
-  List<Prescription> prescriptions = List.from(
+  List<Disease> diseases = List.from(
     response.map(
-      (e) => Prescription.fromJson(e as Map<String, dynamic>),
+      (e) => Disease.fromJson(e as Map<String, dynamic>),
     ),
   );
 
-  return prescriptions;
+  return diseases;
 }
 
 @riverpod
-supabaseClient(SupabaseClientRef ref) {
+SupabaseClient supabaseClient(SupabaseClientRef ref) {
   return Supabase.instance.client;
 }

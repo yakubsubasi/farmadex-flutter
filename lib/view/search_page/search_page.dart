@@ -1,20 +1,8 @@
-// make a search page
-// search bar will make a query to the database
-// search query would make to this url http://localhost:8080/drugs/searchSubstance?search=
-// and show the result in a list view
-
-import 'package:farmadex/model/active_substance/active_substance.dart';
-import 'package:farmadex/service/http_service.dart';
 import 'package:farmadex/view/search_page/provider/search_page_provider.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-
-import 'package:http/http.dart' as http;
-import 'dart:convert';
-
 import 'package:flutter/material.dart';
-import 'package:riverpod_annotation/riverpod_annotation.dart';
 
-import '../../model/Drug/Drug_model.dart';
+import '../disease_detail/detail_page/detail_page.dart';
 
 class SearchPage extends ConsumerWidget {
   const SearchPage({super.key});
@@ -32,7 +20,7 @@ class SearchPage extends ConsumerWidget {
           ],
         ),
         body: Padding(
-          padding: EdgeInsets.all(8.0),
+          padding: const EdgeInsets.all(8.0),
           child: CustomScrollView(
             slivers: [
               const SliverToBoxAdapter(
@@ -48,17 +36,28 @@ class SearchPage extends ConsumerWidget {
               ),
               SliverList(
                 delegate: SliverChildBuilderDelegate(
-                  childCount: ref.watch(getPrescriptionsProvider).when(
+                  childCount: ref.watch(getDiseasesProvider).when(
                         data: (data) => data.length,
                         loading: () => 0,
                         error: (error, stack) => 0,
                       ),
                   (context, index) {
-                    final pageValue = ref.watch(getPrescriptionsProvider);
+                    final pageValue = ref.watch(getDiseasesProvider);
 
                     return pageValue.when(
                       data: (data) {
-                        return ListTile(title: Text(data[index].name!));
+                        return ListTile(
+                            title: Text(
+                              data[index].name!,
+                            ),
+                            onTap: () {
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) => DiseaseDetailPage(
+                                            disease: data[index],
+                                          )));
+                            });
                       },
                       loading: () => const Center(
                         child: CircularProgressIndicator(),
