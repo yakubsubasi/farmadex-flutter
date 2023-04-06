@@ -1,5 +1,6 @@
-import 'package:farmadex/view/search_page/search_page.dart';
 import 'package:flutter/material.dart';
+
+import '../disease_list/search_page.dart';
 
 class LandingPage extends StatelessWidget {
   const LandingPage({super.key});
@@ -44,8 +45,6 @@ class LandingPage extends StatelessWidget {
                 ),
                 ElevatedButton(
                     style: ElevatedButton.styleFrom(
-                      primary: Colors.teal[200],
-                      onPrimary: Colors.black,
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(32.0),
                       ),

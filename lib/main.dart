@@ -1,6 +1,6 @@
 import 'package:farmadex/consts/supabase_key.dart';
-import 'package:farmadex/view/disease_detail/detail_page/detail_page.dart';
-import 'package:farmadex/view/landing_page/landing_page.dart';
+import 'package:farmadex/view/calculator/calculator_page.dart';
+import 'package:farmadex/view/calculator/widgets/binary_input.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
@@ -19,31 +19,53 @@ void main() async {
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
 
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'Flutter Demo',
+      title: 'Farmadex',
       theme: ThemeData(
         useMaterial3: true,
         primarySwatch: Colors.blue,
       ),
-
-      home: const LandingPage(),
-      // material 3 enabled
-    );
-  }
-}
-
-class HomePage extends StatelessWidget {
-  const HomePage({Key? key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('Hello World'),
+      home: CalculatorPageView(
+        children: [
+          BinaryInput(
+            trueLabel: 'Yes',
+            falseLabel: 'No',
+            label: 'Confusion',
+            trueScore: 4,
+            falseScore: 0,
+          ),
+          BinaryInput(
+            trueLabel: 'Yes',
+            falseLabel: 'No',
+            label: 'BUN >19 mg/dL (>7 mmol/L urea)',
+            trueScore: 1,
+            falseScore: 0,
+          ),
+          BinaryInput(
+            trueLabel: 'Yes',
+            falseLabel: 'No',
+            label: 'Respiratory Rate ≥30',
+            trueScore: 1,
+            falseScore: 0,
+          ),
+          BinaryInput(
+            trueLabel: 'Yes',
+            falseLabel: 'No',
+            label: 'Systolic BP <90 mmHg or Diastolic BP ≤60 mmHg',
+            trueScore: 1,
+            falseScore: 0,
+          ),
+          BinaryInput(
+            trueLabel: 'Yes',
+            falseLabel: 'No',
+            label: 'Age ≥65',
+            trueScore: 1,
+            falseScore: 0,
+          ),
+        ],
       ),
     );
   }

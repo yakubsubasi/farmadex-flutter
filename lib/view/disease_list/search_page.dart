@@ -1,4 +1,4 @@
-import 'package:farmadex/view/search_page/provider/search_page_provider.dart';
+import 'package:farmadex/view/disease_list/provider/search_page_provider.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter/material.dart';
 
