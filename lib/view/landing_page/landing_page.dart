@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../disease_list/search_page.dart';
+import '../disease_list/search_page_view.dart';
 
 class LandingPage extends StatelessWidget {
   const LandingPage({super.key});
@@ -52,13 +52,13 @@ class LandingPage extends StatelessWidget {
                     onPressed: () => Navigator.push(
                         context,
                         MaterialPageRoute(
-                            builder: (context) => const SearchPage())),
-                    child: Row(
+                            builder: (context) => const PrescsPage())),
+                    child: const Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        const Text('Başla'),
-                        const SizedBox(width: 10, height: 40),
-                        const Icon(Icons.arrow_forward)
+                        Text('Başla'),
+                        SizedBox(width: 10, height: 40),
+                        Icon(Icons.arrow_forward)
                       ],
                     ))
               ],

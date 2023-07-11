@@ -1,69 +1,46 @@
+import 'package:farmadex/view/calculator/provider/score_provider.dart';
 import 'package:farmadex/view/calculator/widgets/binary_input.dart';
+import 'package:farmadex/view/calculator/widgets/score_component.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class CalculatorPageView extends StatefulWidget {
+class CalculatorPageView extends ConsumerWidget {
   final List<BinaryInput> children;
 
   CalculatorPageView({required this.children});
 
   @override
-  _CalculatorPageViewState createState() => _CalculatorPageViewState();
-}
-
-class _CalculatorPageViewState extends State<CalculatorPageView> {
-  double _totalScore = 0;
-
-  @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     return Scaffold(
-      floatingActionButton: FloatingActionButton.extended(
-        onPressed: () {
-          setState(() {
-            _totalScore = 0;
-            widget.children.forEach((binaryInput) {
-              _totalScore += binaryInput.score;
-            });
-          });
-          showDialog(
-            context: context,
-            builder: (BuildContext context) {
-              return AlertDialog(
-                title: Text('Toplam Skor'),
-                content: Text(_totalScore.toString()),
-                actions: [
-                  TextButton(
-                    child: Text('Tamam'),
-                    onPressed: () {
-                      Navigator.of(context).pop();
+      appBar: AppBar(title: Text('Calculator Page')),
+      body: Stack(
+        children: [
+          Padding(
+            padding: const EdgeInsets.all(24.0),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Expanded(
+                  child: ListView.separated(
+                    separatorBuilder: (BuildContext context, int index) =>
+                        const Divider(),
+                    itemCount: children.length,
+                    itemBuilder: (BuildContext context, int index) {
+                      BinaryInput binaryInput = children[index];
+                      return binaryInput;
                     },
                   ),
-                ],
-              );
-            },
-          );
-        },
-        label: Text('Hesapla'),
-        icon: Icon(Icons.calculate),
-      ),
-      appBar: AppBar(title: Text('Calculator Page')),
-      body: Padding(
-        padding: const EdgeInsets.all(24.0),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Expanded(
-              child: ListView.separated(
-                separatorBuilder: (BuildContext context, int index) =>
-                    const Divider(),
-                itemCount: widget.children.length,
-                itemBuilder: (BuildContext context, int index) {
-                  BinaryInput binaryInput = widget.children[index];
-                  return binaryInput;
-                },
-              ),
+                ),
+                // SCORE
+                Text(
+                  "Score: " + "${ref.watch(scoreProvider)}",
+                  style: TextStyle(fontSize: 24),
+                ),
+                ScoreComponent(score: 100),
+              ],
             ),
-          ],
-        ),
+          )
+        ],
       ),
     );
   }

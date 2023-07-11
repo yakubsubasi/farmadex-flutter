@@ -1,6 +1,4 @@
 import 'package:farmadex/model/disease_model/disease_model.dart';
-import 'package:farmadex/model/disease_model/prescription_model.dart';
-import 'package:flutter/foundation.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
@@ -27,4 +25,23 @@ FutureOr<List<Disease>> getDiseases(GetDiseasesRef ref) async {
 @riverpod
 SupabaseClient supabaseClient(SupabaseClientRef ref) {
   return Supabase.instance.client;
+}
+
+// get searched diseases
+
+@riverpod
+FutureOr<List<Disease>> searchDiseases(GetDiseasesRef ref, String input) async {
+  final client = ref.watch(supabaseClientProvider);
+  final response = await client
+      .from('diseases')
+      .select('*, prescriptions(*, medicines(*))')
+      .textSearch('name', input, type: TextSearchType.phrase);
+
+  List<Disease> diseases = List.from(
+    response.map(
+      (e) => Disease.fromJson(e as Map<String, dynamic>),
+    ),
+  );
+
+  return diseases;
 }
