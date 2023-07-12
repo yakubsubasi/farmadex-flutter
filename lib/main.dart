@@ -2,6 +2,7 @@ import 'package:farmadex/consts/supabase_key.dart';
 import 'package:farmadex/view/landing_page/landing_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:go_router/go_router.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 
@@ -24,14 +25,21 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return MaterialApp.router(
+      routerConfig: router,
       debugShowCheckedModeBanner: false,
       title: 'Farmadex',
       theme: ThemeData(
         useMaterial3: true,
         primarySwatch: Colors.blue,
       ),
-      home: const LandingPage(),
     );
   }
 }
+
+GoRouter router = GoRouter(routes: [
+  GoRoute(
+      path: '/',
+      pageBuilder: (context, state) =>
+          const NoTransitionPage(child: LandingPage())),
+]);
