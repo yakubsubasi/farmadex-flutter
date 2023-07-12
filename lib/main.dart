@@ -40,6 +40,6 @@ class MyApp extends StatelessWidget {
 GoRouter router = GoRouter(routes: [
   GoRoute(
       path: '/',
-      pageBuilder: (context, state) =>
+      pageBuilder: (contsext, state) =>
           const NoTransitionPage(child: LandingPage())),
 ]);
