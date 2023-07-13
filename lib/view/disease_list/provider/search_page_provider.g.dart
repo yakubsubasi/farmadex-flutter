@@ -35,7 +35,7 @@ final supabaseClientProvider = AutoDisposeProvider<SupabaseClient>.internal(
 );
 
 typedef SupabaseClientRef = AutoDisposeProviderRef<SupabaseClient>;
-String _$searchDiseasesHash() => r'f91cd0a9a66a6bef63e8620ab5b18f0b75b45e11';
+String _$searchDiseasesHash() => r'3f51d4782e48db0ddeb1b265ae51e5cc53256ce3';
 
 /// Copied from Dart SDK
 class _SystemHash {

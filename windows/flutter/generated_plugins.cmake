@@ -4,6 +4,8 @@
 
 list(APPEND FLUTTER_PLUGIN_LIST
   app_links
+  desktop_webview_auth
+  firebase_core
   url_launcher_windows
 )
 

@@ -1,4 +1,6 @@
+import 'package:farmadex/router/router.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
 import '../disease_list/search_page_view.dart';
 
@@ -8,6 +10,8 @@ class LandingPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      drawer: buildDrawer(context),
+      appBar: AppBar(),
       body: SafeArea(
         child: Padding(
           padding: const EdgeInsets.all(32.0),
@@ -68,4 +72,34 @@ class LandingPage extends StatelessWidget {
       ),
     );
   }
+}
+
+buildDrawer(BuildContext context) {
+  return Drawer(
+    child: ListView(
+      padding: EdgeInsets.zero,
+      children: <Widget>[
+        DrawerHeader(
+            decoration: BoxDecoration(
+              color: Theme.of(context).primaryColor,
+            ),
+            child: Text(
+              'Menu',
+            )),
+        ListTile(
+          leading: Icon(Icons.account_circle),
+          title: Text('Profile'),
+          onTap: () {
+            //Navigate to profile page
+            GoRouter.of(context).goNamed(AppRoute.profile.name);
+          },
+        ),
+        ListTile(
+          leading: Icon(Icons.settings),
+          title: Text('Settings'),
+          onTap: () {},
+        ),
+      ],
+    ),
+  );
 }
