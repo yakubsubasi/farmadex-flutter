@@ -1,7 +1,5 @@
-import 'package:farmadex/router/router.dart';
+import 'package:farmadex/view/authentication/presentation/custom_profile_screen.dart';
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
-
 import '../disease_list/search_page_view.dart';
 
 class LandingPage extends StatelessWidget {
@@ -10,7 +8,7 @@ class LandingPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      drawer: buildDrawer(context),
+      drawer: const CustonDrawer(),
       appBar: AppBar(),
       body: SafeArea(
         child: Padding(
@@ -74,32 +72,44 @@ class LandingPage extends StatelessWidget {
   }
 }
 
-buildDrawer(BuildContext context) {
-  return Drawer(
-    child: ListView(
-      padding: EdgeInsets.zero,
-      children: <Widget>[
-        DrawerHeader(
-            decoration: BoxDecoration(
-              color: Theme.of(context).primaryColor,
-            ),
-            child: Text(
-              'Menu',
-            )),
-        ListTile(
-          leading: Icon(Icons.account_circle),
-          title: Text('Profile'),
-          onTap: () {
-            //Navigate to profile page
-            GoRouter.of(context).goNamed(AppRoute.profile.name);
-          },
-        ),
-        ListTile(
-          leading: Icon(Icons.settings),
-          title: Text('Settings'),
-          onTap: () {},
-        ),
-      ],
-    ),
-  );
+class CustonDrawer extends StatelessWidget {
+  const CustonDrawer({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Drawer(
+      child: ListView(
+        padding: EdgeInsets.zero,
+        children: <Widget>[
+          DrawerHeader(
+              decoration: BoxDecoration(
+                color: Theme.of(context).primaryColor,
+              ),
+              child: const Text(
+                'Menu',
+              )),
+          ListTile(
+            leading: const Icon(Icons.account_circle),
+            title: const Text('Profile'),
+            onTap: () {
+              //Navigate to profile page
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) {
+                  return const CustomProfileScreen();
+                }),
+
+                // close drawer
+              );
+            },
+          ),
+          ListTile(
+            leading: const Icon(Icons.settings),
+            title: const Text('Settings'),
+            onTap: () {},
+          ),
+        ],
+      ),
+    );
+  }
 }

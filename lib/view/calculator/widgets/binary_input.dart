@@ -12,7 +12,7 @@ class BinaryInput extends StatefulWidget {
   final double trueScore;
   final double falseScore;
 
-  double score;
+  late final score;
 
   BinaryInput({
     Key? key,

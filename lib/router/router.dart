@@ -1,3 +1,4 @@
+import 'package:farmadex/router/go_router_refresh_stream.dart';
 import 'package:farmadex/view/authentication/data/firebase_auth_repository.dart';
 import 'package:farmadex/view/authentication/presentation/custom_profile_screen.dart';
 import 'package:farmadex/view/authentication/presentation/custom_sign_in_screen.dart';
@@ -15,6 +16,8 @@ GoRouter goRouter(GoRouterRef ref) {
   final authRepository = ref.watch(authRepositoryProvider);
 
   return GoRouter(
+      refreshListenable:
+          GoRouterRefreshStream(authRepository.authStateChanges()),
       redirect: (context, state) {
         final isLoggedIn = authRepository.currentUser != null;
         if (isLoggedIn) {
