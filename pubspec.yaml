@@ -27,6 +27,7 @@ dependencies:
   firebase_auth: ^4.6.3
   firebase_dynamic_links: ^5.3.3
   firebase_ui_auth: ^1.5.0
+  firebase_ui_localizations: ^1.5.0
 
 
 dev_dependencies:
@@ -43,3 +44,8 @@ flutter:
   assets:
     - assets/images/
     - assets/icons/
+  
+fonts:
+  - family: SocialIcons
+    fonts:
+      - asset: packages/firebase_ui_auth/fonts/SocialIcons.ttf

@@ -1,5 +1,5 @@
-import 'package:farmadex/view/authentication/presentation/custom_profile_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import '../disease_list/search_page_view.dart';
 
 class LandingPage extends StatelessWidget {
@@ -93,14 +93,7 @@ class CustonDrawer extends StatelessWidget {
             title: const Text('Profile'),
             onTap: () {
               //Navigate to profile page
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) {
-                  return const CustomProfileScreen();
-                }),
-
-                // close drawer
-              );
+              context.go('/profile');
             },
           ),
           ListTile(
