@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-
-import '../../model/disease_model/disease_model.dart';
+import 'package:farmadex_models/farmadex_models.dart';
 import '../disease_detail/detail_page/detail_page.dart';
 
 class CategoryResultsPage extends StatelessWidget {

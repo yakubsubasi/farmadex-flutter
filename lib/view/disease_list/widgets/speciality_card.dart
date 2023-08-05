@@ -1,7 +1,6 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
-
-import 'package:farmadex/model/disease_model/disease_model.dart';
+import 'package:farmadex_models/farmadex_models.dart';
 
 class SpecialityCard extends StatelessWidget {
   final Speciality speciality;

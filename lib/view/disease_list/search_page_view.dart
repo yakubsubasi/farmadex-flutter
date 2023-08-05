@@ -1,4 +1,4 @@
-import 'package:farmadex/model/disease_model/disease_model.dart';
+import 'package:farmadex_models/farmadex_models.dart';
 import 'package:farmadex/view/disease_detail/detail_page/detail_page.dart';
 import 'package:farmadex/view/disease_list/category_detail_page.dart';
 import 'package:farmadex/view/disease_list/provider/search_page_provider.dart';

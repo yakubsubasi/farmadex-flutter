@@ -29,7 +29,7 @@ class LandingPage extends StatelessWidget {
                   height: 24,
                 ),
                 Text(
-                    'Farmadex, etken madde bazlı aramalarınızla Jenerik ilaç bilgilerini kolayca bulmanızı sağlar. Jenerik ilaç hakkında fiyat, etken madde, atc kodu, üretici firma bilgilerine ulaşabilirsiniz.',
+                    'Farmadex, yüzlerce birinci basamak için taslak reçte şablonu ile karar destek mekanizması sağlar, tedaviler hakkında faydalı bilgiler ile karar destek sürecinizi kolaylaştırır.',
                     style: Theme.of(context).textTheme.bodyLarge),
                 const SizedBox(
                   height: 30,

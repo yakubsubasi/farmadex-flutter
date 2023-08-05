@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-
-import '../../../../model/disease_model/prescription_model.dart';
+import 'package:farmadex_models/farmadex_models.dart';
 
 class PrescriptionCard extends StatelessWidget {
   const PrescriptionCard({Key? key, required this.prescription})

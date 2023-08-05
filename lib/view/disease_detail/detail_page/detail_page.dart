@@ -1,7 +1,6 @@
 import 'package:farmadex/view/disease_detail/detail_page/widgets/prescription_card.dart';
+import 'package:farmadex_models/farmadex_models.dart';
 import 'package:flutter/material.dart';
-
-import '../../../model/disease_model/disease_model.dart';
 
 class DiseaseDetailPage extends StatelessWidget {
   const DiseaseDetailPage({
