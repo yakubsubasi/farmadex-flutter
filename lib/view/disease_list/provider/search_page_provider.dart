@@ -1,3 +1,4 @@
+import 'package:farmadex/core/supabase_client/supabase_client_provider.dart';
 import 'package:farmadex_models/farmadex_models.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
@@ -20,11 +21,6 @@ FutureOr<List<Disease>> getDiseases(GetDiseasesRef ref) async {
   );
 
   return diseases;
-}
-
-@riverpod
-SupabaseClient supabaseClient(SupabaseClientRef ref) {
-  return Supabase.instance.client;
 }
 
 // get searched diseases

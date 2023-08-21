@@ -6,6 +6,8 @@ import 'package:farmadex/view/landing_page/landing_page.dart';
 import 'package:go_router/go_router.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
+import '../view/onboarding/providers/app_user_provider/app_user_provider.dart';
+
 // to watch and build this file, run the following command:
 // $ flutter pub run build_runner watch --delete-conflicting-outputs
 
@@ -14,6 +16,9 @@ part 'router.g.dart';
 @riverpod
 GoRouter goRouter(GoRouterRef ref) {
   final authRepository = ref.watch(authRepositoryProvider);
+  final appUser = ref.watch(appUserProviderProvider);
+
+  final isOnboarded = appUser != null;
 
   return GoRouter(
       refreshListenable:

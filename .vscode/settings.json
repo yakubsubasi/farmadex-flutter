@@ -1,3 +1,5 @@
 {
-    "dart.flutterSdkPath": "/Users/yakubsubasi/development/sdk/flutter"
+    "dart.flutterSdkPath": "/Users/yakubsubasi/development/sdk/flutter",
+    "cmake.sourceDirectory": "/Users/yakubsubasi/development/projects/farmadex/farmadex/linux",
+    "java.configuration.updateBuildConfiguration": "interactive"
 }

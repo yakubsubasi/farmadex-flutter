@@ -1,25 +1,31 @@
-/// Type defining a user ID from Firebase.
-typedef UserID = String;
+// ignore_for_file: public_member_api_docs, sort_constructors_first
 
-/// Simple class representing the user UID and email.
-class AppUser {
-  const AppUser({
-    required this.uid,
-    required this.email,
-  });
-  final String uid;
-  final String email;
+import 'package:farmadex_models/farmadex_models.dart';
 
-  @override
-  bool operator ==(Object other) {
-    if (identical(this, other)) return true;
+// to gen flutter pub run build_runner build --delete-conflicting-outputs
+// to gen flutter pub run build_runner watch --delete-conflicting-outputs
 
-    return other is AppUser && other.uid == uid && other.email == email;
-  }
+import 'package:freezed_annotation/freezed_annotation.dart';
 
-  @override
-  int get hashCode => uid.hashCode ^ email.hashCode;
+import '../../onboarding/model/onboarding_model.dart';
 
-  @override
-  String toString() => 'AppUser(uid: $uid, email: $email)';
+part 'app_user.freezed.dart';
+part 'app_user.g.dart';
+
+@freezed
+abstract class AppUser with _$AppUser {
+  const factory AppUser({
+    String? uid,
+    String? email,
+    String? name,
+    @JsonKey(name: 'user_type') UserType? userType,
+    @JsonKey(name: 'is_premium') bool? isPremium,
+    @JsonKey(name: 'is_onboarded') bool? isOnboarded,
+    @JsonKey(name: 'class_grade') int? classGrade,
+    @JsonKey(name: 'register_date') DateTime? registerDate,
+    Speciality? speciality,
+  }) = _AppUser;
+
+  factory AppUser.fromJson(Map<String, dynamic> json) =>
+      _$AppUserFromJson(json);
 }

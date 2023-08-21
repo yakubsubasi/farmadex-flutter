@@ -1,9 +1,26 @@
+import 'package:farmadex/view/onboarding/view/onboarding_view.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../disease_list/search_page_view.dart';
+import '../onboarding/providers/app_user_provider/app_user_provider.dart';
 
-class LandingPage extends StatelessWidget {
+class LandingPage extends ConsumerWidget {
   const LandingPage({super.key});
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final isOnboarded = ref.watch(appUserProviderProvider) != null;
+    print(isOnboarded);
+
+    return isOnboarded ? const MainPage() : const OnboardPage();
+  }
+}
+
+class MainPage extends StatelessWidget {
+  const MainPage({
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -77,32 +94,29 @@ class CustonDrawer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Drawer(
-      child: ListView(
-        padding: EdgeInsets.zero,
-        children: <Widget>[
-          DrawerHeader(
-              decoration: BoxDecoration(
-                color: Theme.of(context).primaryColor,
-              ),
-              child: const Text(
-                'Menu',
-              )),
-          ListTile(
-            leading: const Icon(Icons.account_circle),
-            title: const Text('Profile'),
-            onTap: () {
-              //Navigate to profile page
-              context.go('/profile');
-            },
-          ),
-          ListTile(
-            leading: const Icon(Icons.settings),
-            title: const Text('Settings'),
-            onTap: () {},
-          ),
-        ],
-      ),
+    return NavigationDrawer(
+      children: [
+        DrawerHeader(
+            decoration: BoxDecoration(
+              color: Theme.of(context).primaryColor,
+            ),
+            child: const Text(
+              'Menu',
+            )),
+        ListTile(
+          leading: const Icon(Icons.account_circle),
+          title: const Text('Profile'),
+          onTap: () {
+            //Navigate to profile page
+            context.go('/profile');
+          },
+        ),
+        ListTile(
+          leading: const Icon(Icons.settings),
+          title: const Text('Settings'),
+          onTap: () {},
+        ),
+      ],
     );
   }
 }

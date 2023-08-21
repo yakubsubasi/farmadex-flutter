@@ -30,7 +30,7 @@ class SignInAnonymouslyFooter extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     return Column(
       children: [
-        SizedBox(width: 8.0),
+        const SizedBox(width: 8.0),
         const Row(
           children: [
             Expanded(child: Divider()),

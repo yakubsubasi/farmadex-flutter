@@ -20,21 +20,6 @@ final getDiseasesProvider = AutoDisposeFutureProvider<List<Disease>>.internal(
 );
 
 typedef GetDiseasesRef = AutoDisposeFutureProviderRef<List<Disease>>;
-String _$supabaseClientHash() => r'36e9cae00709545a85bfe4a5a2cb98d8686a01ea';
-
-/// See also [supabaseClient].
-@ProviderFor(supabaseClient)
-final supabaseClientProvider = AutoDisposeProvider<SupabaseClient>.internal(
-  supabaseClient,
-  name: r'supabaseClientProvider',
-  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
-      ? null
-      : _$supabaseClientHash,
-  dependencies: null,
-  allTransitiveDependencies: null,
-);
-
-typedef SupabaseClientRef = AutoDisposeProviderRef<SupabaseClient>;
 String _$searchDiseasesHash() => r'3f51d4782e48db0ddeb1b265ae51e5cc53256ce3';
 
 /// Copied from Dart SDK
@@ -138,4 +123,5 @@ class SearchDiseasesProvider extends AutoDisposeFutureProvider<List<Disease>> {
     return _SystemHash.finish(hash);
   }
 }
-// ignore_for_file: unnecessary_raw_strings, subtype_of_sealed_class, invalid_use_of_internal_member, do_not_use_environment, prefer_const_constructors, public_member_api_docs, avoid_private_typedef_functions
+// ignore_for_file: type=lint
+// ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member
