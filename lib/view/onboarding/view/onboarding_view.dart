@@ -82,7 +82,7 @@ class _OnboardPageState extends ConsumerState<OnboardPage> {
                           .watch(onboardingStateProviderProvider.notifier)
                           .changeUserType(UserType.specialist);
                     },
-                    child: const Text('Uzman Hekim'),
+                    child: const Text('Uzman - Asistan Hekim'),
                   ),
                   const SizedBox(
                     width: 10,

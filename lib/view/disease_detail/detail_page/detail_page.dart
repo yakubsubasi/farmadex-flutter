@@ -31,18 +31,16 @@ class DiseaseDetailPage extends StatelessWidget {
         ),
       ),
       body: SafeArea(
-        child: Column(
-          children: [
-            ListView.builder(
-              shrinkWrap: true,
-              itemCount: disease.prescriptions?.length ?? 0,
-              itemBuilder: (context, index) {
-                return PrescriptionCard(
-                  prescription: disease.prescriptions![index],
-                );
-              },
-            ),
-          ],
+        child: Expanded(
+          child: ListView.builder(
+            shrinkWrap: true,
+            itemCount: disease.prescriptions?.length ?? 0,
+            itemBuilder: (context, index) {
+              return PrescriptionCard(
+                prescription: disease.prescriptions![index],
+              );
+            },
+          ),
         ),
       ),
     );

@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:farmadex_models/farmadex_models.dart';
 import '../disease_detail/detail_page/detail_page.dart';
@@ -64,7 +65,7 @@ class CategoryResultsPage extends StatelessWidget {
           SliverList(
             delegate: SliverChildBuilderDelegate(
               (context, index) {
-                return ListTile(
+                return CupertinoListTile.notched(
                   trailing: const Icon(Icons.arrow_forward_ios),
                   leading: const Icon(Icons.medical_services_outlined),
                   title: Text(diseases[index].name!),

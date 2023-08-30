@@ -12,66 +12,168 @@ class PrescriptionCard extends StatelessWidget {
     return Builder(builder: (context) {
       return Card(
         margin: const EdgeInsets.all(10),
-        child: Padding(
-          padding: const EdgeInsets.all(16),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(prescription.name ?? ' '),
-              Text(prescription.shortDescription ?? ' '),
-              const Text(
-                'Rx: \n',
-                style: TextStyle(
-                  fontStyle: FontStyle.italic,
-                  fontSize: 24,
-                ),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Padding(
+              padding: const EdgeInsets.fromLTRB(16.0, 16.0, 16.0, 0),
+              child: Column(
+                children: [
+                  Text(prescription.name ?? ' '),
+                  Text(prescription.shortDescription ?? ' '),
+                  const Text(
+                    'Rx: \n',
+                    style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                      fontStyle: FontStyle.italic,
+                      fontSize: 24,
+                    ),
+                  ),
+                ],
               ),
-              ListView.builder(
-                shrinkWrap: true,
-                physics: const NeverScrollableScrollPhysics(),
-                itemCount: prescription.medicines?.length ?? 0,
-                itemBuilder: (context, index) {
-                  return Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                          "${index + 1} -  ${prescription.medicines![index].name} \n ",
-                          style: const TextStyle(fontSize: 18)),
-                      Align(
-                        alignment: Alignment.centerRight,
-                        child: RichText(
-                          text: TextSpan(
-                            style: const TextStyle(
-                              fontSize: 18,
-                              color: Colors.black,
-                            ),
-                            children: [
-                              const TextSpan(
-                                text: 'S: ',
-                                style: TextStyle(
-                                  fontWeight: FontWeight.bold,
-                                ),
-                              ),
-                              TextSpan(
-                                text:
-                                    '${prescription.medicines![index].howOften} x',
-                              ),
-                              TextSpan(
-                                text:
-                                    ' ${prescription.medicines![index].howMany}      ',
-                              ),
-                            ],
-                          ),
-                        ),
+            ),
+            ListView.separated(
+              padding: const EdgeInsets.all(16),
+              separatorBuilder: (context, index) => const Divider(height: 20),
+              shrinkWrap: true,
+              physics: const NeverScrollableScrollPhysics(),
+              itemCount: prescription.medicines?.length ?? 0,
+              itemBuilder: (context, index) {
+                return Row(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      '${index + 1} - ',
+                      style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        fontSize: 18,
                       ),
-                    ],
-                  );
-                },
+                    ),
+                    Expanded(
+                        child: MedicineSection(
+                            medicine: prescription.medicines![index])),
+                  ],
+                );
+              },
+            ),
+            if (prescription.explanation != null) ...[
+              const Divider(
+                thickness: 2,
+                height: 20,
+                color: Colors.black45,
+              ),
+              ExplanationsSection(
+                explanations: prescription.explanation!,
+              )
+            ]
+          ],
+        ),
+      );
+    });
+  }
+}
+
+class MedicineSection extends StatelessWidget {
+  const MedicineSection({
+    super.key,
+    required this.medicine,
+  });
+
+  final Medicine medicine;
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        RichText(
+          text: TextSpan(
+            style: Theme.of(context).textTheme.bodyLarge,
+            children: [
+              TextSpan(text: medicine.name),
+              const TextSpan(text: "\n"),
+              TextSpan(
+                text: medicine.activeSubstance,
+                style: const TextStyle(
+                  fontStyle: FontStyle.italic,
+                ),
               ),
             ],
           ),
         ),
-      );
-    });
+        Align(
+          alignment: Alignment.centerRight,
+          child: RichText(
+            text: TextSpan(
+              style: const TextStyle(
+                fontSize: 18,
+                color: Colors.black,
+              ),
+              children: [
+                const TextSpan(
+                  text: 'S: ',
+                  style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+                TextSpan(
+                  text: '${medicine.howOften} x',
+                ),
+                TextSpan(
+                  text: ' ${medicine.howMany}      ',
+                ),
+              ],
+            ),
+          ),
+        ),
+      ],
+    );
+  }
+}
+
+class ExplanationsSection extends StatelessWidget {
+  const ExplanationsSection({super.key, required this.explanations});
+
+  final List<String> explanations;
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Padding(
+          padding: const EdgeInsets.fromLTRB(16.0, 8, 16.0, 0),
+          child: Text('Ek açıklamalar',
+              style: Theme.of(context).textTheme.titleMedium?.copyWith(
+                    color: Colors.black,
+                    fontWeight: FontWeight.bold,
+                  )),
+        ),
+        const SizedBox(
+          height: 20,
+        ),
+        ListView.separated(
+          padding: const EdgeInsets.fromLTRB(16.0, 0, 16.0, 16.0),
+          separatorBuilder: (context, index) => const Divider(height: 20),
+          shrinkWrap: true,
+          physics: const NeverScrollableScrollPhysics(),
+          itemCount: explanations.length,
+          itemBuilder: (context, index) {
+            return Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  '${index + 1} -  ${explanations[index]}',
+                  style: const TextStyle(fontSize: 15),
+                ),
+                const SizedBox(
+                  height: 10,
+                ),
+              ],
+            );
+          },
+        ),
+      ],
+    );
   }
 }
