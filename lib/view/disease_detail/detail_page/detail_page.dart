@@ -37,6 +37,7 @@ class DiseaseDetailPage extends StatelessWidget {
             itemCount: disease.prescriptions?.length ?? 0,
             itemBuilder: (context, index) {
               return PrescriptionCard(
+                index: index,
                 prescription: disease.prescriptions![index],
               );
             },

@@ -112,9 +112,22 @@ class CustonDrawer extends StatelessWidget {
           },
         ),
         ListTile(
+          leading: Icon(Icons.assignment),
+          title: Text('Kullanıcı Sözleşmesi'),
+          onTap: () {
+            //Navigate to profile page
+            context.push('/agreement');
+          },
+        ),
+        ListTile(
           leading: const Icon(Icons.settings),
           title: const Text('Settings'),
           onTap: () {},
+        ),
+        const ListTile(
+          leading: Icon(Icons.logout),
+          title: Text('Çıkış Yap'),
+          onTap: null,
         ),
       ],
     );

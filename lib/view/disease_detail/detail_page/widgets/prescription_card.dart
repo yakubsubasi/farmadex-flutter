@@ -1,11 +1,17 @@
+// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
+
 import 'package:farmadex_models/farmadex_models.dart';
 
 class PrescriptionCard extends StatelessWidget {
-  const PrescriptionCard({Key? key, required this.prescription})
-      : super(key: key);
+  const PrescriptionCard({
+    Key? key,
+    required this.prescription,
+    required this.index,
+  }) : super(key: key);
 
   final Prescription prescription;
+  final int index;
 
   @override
   Widget build(BuildContext context) {
@@ -18,11 +24,38 @@ class PrescriptionCard extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.fromLTRB(16.0, 16.0, 16.0, 0),
               child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text(prescription.name ?? ' '),
+                  Row(
+                    children: [
+                      Container(
+                        width: 30,
+                        height: 30,
+                        decoration: BoxDecoration(
+                          color: Colors.transparent,
+                          border: Border.all(
+                            color: Theme.of(context).primaryColor,
+                            width: 3,
+                          ),
+                          shape: BoxShape.circle,
+                        ),
+                        child: Center(
+                          child: Text(
+                            '${index + 1}',
+                            style: const TextStyle(
+                              fontWeight: FontWeight.bold,
+                              fontSize: 18,
+                            ),
+                          ),
+                        ),
+                      ),
+                      const SizedBox(width: 10),
+                      Text(prescription.name ?? ' '),
+                    ],
+                  ),
                   Text(prescription.shortDescription ?? ' '),
                   const Text(
-                    'Rx: \n',
+                    'Rx:',
                     style: TextStyle(
                       fontWeight: FontWeight.bold,
                       fontStyle: FontStyle.italic,
@@ -44,7 +77,7 @@ class PrescriptionCard extends StatelessWidget {
                   children: [
                     Text(
                       '${index + 1} - ',
-                      style: TextStyle(
+                      style: const TextStyle(
                         fontWeight: FontWeight.bold,
                         fontSize: 18,
                       ),

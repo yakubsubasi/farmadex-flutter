@@ -1,8 +1,10 @@
 import 'package:farmadex/router/go_router_refresh_stream.dart';
+import 'package:farmadex/view/agreement_page/agreement_page_view.dart';
 import 'package:farmadex/view/authentication/data/firebase_auth_repository.dart';
 import 'package:farmadex/view/authentication/presentation/custom_profile_screen.dart';
 import 'package:farmadex/view/authentication/presentation/custom_sign_in_screen.dart';
 import 'package:farmadex/view/landing_page/landing_page.dart';
+import 'package:flutter/src/widgets/basic.dart';
 import 'package:go_router/go_router.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
@@ -16,9 +18,6 @@ part 'router.g.dart';
 @riverpod
 GoRouter goRouter(GoRouterRef ref) {
   final authRepository = ref.watch(authRepositoryProvider);
-  final appUser = ref.watch(appUserProviderProvider);
-
-  final isOnboarded = appUser != null;
 
   return GoRouter(
       refreshListenable:
@@ -38,6 +37,13 @@ GoRouter goRouter(GoRouterRef ref) {
       },
       initialLocation: '/signIn',
       routes: [
+        GoRoute(
+          path: '/agreement',
+          name: AppRoute.agreement.name,
+          pageBuilder: (context, state) => const NoTransitionPage(
+            child: AgreementPage(),
+          ),
+        ),
         GoRoute(
           path: '/',
           name: AppRoute.landingPage.name,
@@ -62,6 +68,7 @@ GoRouter goRouter(GoRouterRef ref) {
 }
 
 enum AppRoute {
+  agreement,
   onboarding,
   signIn,
   profile,
