@@ -5,8 +5,6 @@ import 'package:firebase_auth/firebase_auth.dart' as auth;
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
-import '../app_user_provider/app_user_provider.dart';
-
 part 'on_submit.g.dart';
 
 /// This code defines a function onSubmit that creates a new user and adds

@@ -28,7 +28,8 @@ class AgreementPage extends ConsumerWidget {
                   data: data,
                 ),
                 error: (e, s) => const Text("Error"),
-                loading: () => const CircularProgressIndicator.adaptive(),
+                loading: () =>
+                    const Center(child: CircularProgressIndicator.adaptive()),
               ),
             ),
           ),

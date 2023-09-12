@@ -1,8 +1,6 @@
-import 'package:farmadex/view/authentication/domain/app_user.dart';
 import 'package:farmadex/view/onboarding/model/onboarding_model.dart';
 import 'package:farmadex_models/farmadex_models.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
-import 'package:supabase_flutter/supabase_flutter.dart';
 
 part 'onboarding_state_provider.g.dart';
 

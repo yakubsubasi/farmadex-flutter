@@ -4,11 +4,9 @@ import 'package:farmadex/view/authentication/data/firebase_auth_repository.dart'
 import 'package:farmadex/view/authentication/presentation/custom_profile_screen.dart';
 import 'package:farmadex/view/authentication/presentation/custom_sign_in_screen.dart';
 import 'package:farmadex/view/landing_page/landing_page.dart';
-import 'package:flutter/src/widgets/basic.dart';
+import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
-
-import '../view/onboarding/providers/app_user_provider/app_user_provider.dart';
 
 // to watch and build this file, run the following command:
 // $ flutter pub run build_runner watch --delete-conflicting-outputs
@@ -28,10 +26,8 @@ GoRouter goRouter(GoRouterRef ref) {
           if (state.location.startsWith('/signIn')) {
             return '/';
           }
-        } else {
-          if (state.location.startsWith('/')) {
-            return '/signIn';
-          }
+        } else if (state.location.startsWith('/')) {
+          return '/signIn';
         }
         return null;
       },
@@ -40,7 +36,7 @@ GoRouter goRouter(GoRouterRef ref) {
         GoRoute(
           path: '/agreement',
           name: AppRoute.agreement.name,
-          pageBuilder: (context, state) => const NoTransitionPage(
+          pageBuilder: (context, state) => const MaterialPage(
             child: AgreementPage(),
           ),
         ),

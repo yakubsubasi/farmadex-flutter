@@ -11,7 +11,6 @@ class LandingPage extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final isOnboarded = ref.watch(appUserProviderProvider) != null;
-    print(isOnboarded);
 
     return isOnboarded ? const MainPage() : const OnboardPage();
   }
@@ -108,12 +107,12 @@ class CustonDrawer extends StatelessWidget {
           title: const Text('Profile'),
           onTap: () {
             //Navigate to profile page
-            context.go('/profile');
+            context.push('/profile');
           },
         ),
         ListTile(
-          leading: Icon(Icons.assignment),
-          title: Text('Kullanıcı Sözleşmesi'),
+          leading: const Icon(Icons.assignment),
+          title: const Text('Kullanıcı Sözleşmesi'),
           onTap: () {
             //Navigate to profile page
             context.push('/agreement');

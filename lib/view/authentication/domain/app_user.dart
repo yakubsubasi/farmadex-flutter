@@ -1,4 +1,4 @@
-// ignore_for_file: public_member_api_docs, sort_constructors_first
+// ignore_for_file: public_member_api_docs, sort_constructors_first, invalid_annotation_target
 
 import 'package:farmadex_models/farmadex_models.dart';
 
@@ -10,6 +10,7 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 import '../../onboarding/model/onboarding_model.dart';
 
 part 'app_user.freezed.dart';
+
 part 'app_user.g.dart';
 
 @freezed
