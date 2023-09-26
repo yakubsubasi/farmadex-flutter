@@ -1,5 +1,3 @@
-// ignore_for_file: public_member_api_docs, sort_constructors_first
-
 import 'package:farmadex/view/onboarding/providers/app_user_provider/app_user_provider.dart';
 import 'package:farmadex/view/onboarding/providers/onboarding_state_provider/onboarding_state_provider.dart';
 import 'package:farmadex/view/onboarding/providers/submit/on_submit.dart';
@@ -7,7 +5,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:introduction_screen/introduction_screen.dart';
 import 'package:farmadex/view/onboarding/model/onboarding_model.dart';
-
 import 'package:farmadex_models/farmadex_models.dart';
 
 class OnboardPage extends ConsumerStatefulWidget {
@@ -18,13 +15,19 @@ class OnboardPage extends ConsumerStatefulWidget {
 }
 
 class _OnboardPageState extends ConsumerState<OnboardPage> {
+  final nameInputcontroller = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     UserType? userType = ref.watch(onboardingStateProviderProvider).userType;
+
     return IntroductionScreen(
       canProgress: (int page) {
-        if (page == 1) {
+        if (page == 2) {
           return userType != null;
+        }
+        if (page == 1) {
+          return nameInputcontroller.text.isNotEmpty;
         }
         return true;
       },
@@ -32,6 +35,7 @@ class _OnboardPageState extends ConsumerState<OnboardPage> {
         backgroundColor: Theme.of(context).primaryColor,
         foregroundColor: Theme.of(context).colorScheme.onPrimary,
       ),
+      dotsFlex: 2,
       showNextButton: true,
       showBackButton: true,
       back: const Text("Geri"),
@@ -61,6 +65,26 @@ class _OnboardPageState extends ConsumerState<OnboardPage> {
           ),
         ),
         PageViewModel(
+          title: 'İsim',
+          image: const InitialScreenIcon(icon: Icons.account_circle),
+          bodyWidget: Center(
+            child: SizedBox(
+              width: 200,
+              child: TextField(
+                controller: nameInputcontroller,
+                onChanged: (value) {
+                  ref
+                      .watch(onboardingStateProviderProvider.notifier)
+                      .changeName(value);
+                },
+                decoration: const InputDecoration(
+                  hintText: 'İsim',
+                ),
+              ),
+            ),
+          ),
+        ),
+        PageViewModel(
           decoration: const PageDecoration(
             imageFlex: 2,
             bodyFlex: 2,
@@ -82,7 +106,7 @@ class _OnboardPageState extends ConsumerState<OnboardPage> {
                           .watch(onboardingStateProviderProvider.notifier)
                           .changeUserType(UserType.specialist);
                     },
-                    child: const Text('Uzman - Asistan Hekim'),
+                    child: const Text('Uzman - Asistan'),
                   ),
                   const SizedBox(
                     width: 10,
@@ -186,8 +210,8 @@ class _OnboardPageState extends ConsumerState<OnboardPage> {
           ),
         ],
         PageViewModel(
-          title: "Son Sayfa",
-          body: "Onboarding tamamlandı.",
+          title: "Herşey Hazır!",
+          body: "Şimdi uygulamayı kullanmaya başlayabilirsiniz",
           image: const InitialScreenIcon(icon: Icons.check_circle_outline),
         ),
       ],
@@ -224,7 +248,7 @@ class CustomSelectableButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      width: 160,
+      width: 170,
       child: FilledButton.tonal(
           onPressed: onPressed,
           style: isSelected

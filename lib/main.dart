@@ -1,4 +1,4 @@
-import 'package:farmadex/consts/auth_local.dart';
+import 'package:farmadex/core/consts/auth_local.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_ui_localizations/firebase_ui_localizations.dart';
 import 'package:flutter/material.dart';
@@ -6,7 +6,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
-import 'package:farmadex/consts/supabase_key.dart';
+import 'package:farmadex/core/consts/supabase_key.dart';
 import 'package:farmadex/firebase_options.dart';
 import 'package:farmadex/router/router.dart';
 

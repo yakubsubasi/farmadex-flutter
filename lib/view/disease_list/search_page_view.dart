@@ -58,13 +58,6 @@ class PrescSearchPage extends StatelessWidget {
               },
             ),
             title: const Text('Farmadex'),
-            actions: [
-              IconButton(
-                //drawer
-                icon: const Icon(Icons.menu_sharp),
-                onPressed: () {},
-              )
-            ],
           ),
           SliverToBoxAdapter(
             child: Padding(
@@ -97,6 +90,7 @@ class PrescSearchPage extends StatelessWidget {
             child: Padding(
               padding: const EdgeInsets.all(16.0),
               child: SearchAnchor.bar(
+                barElevation: MaterialStateProperty.all(1.0),
                 barHintText: 'Örnek reçete ara..',
                 suggestionsBuilder:
                     (BuildContext context, SearchController controller) {

@@ -31,7 +31,7 @@ Future<void> onSubmit(OnSubmitRef ref) async {
 AppUser _createUser(auth.User currentUser, OnboardingModel onboardstate) {
   return AppUser(
     email: currentUser.email!,
-    name: currentUser.displayName,
+    name: onboardstate.name,
     uid: currentUser.uid,
     isPremium: false,
     isOnboarded: true,

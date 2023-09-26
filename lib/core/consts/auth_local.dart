@@ -96,4 +96,7 @@ class LabelOverrides extends DefaultLocalizations {
 
   @override
   String get signInHintText => 'Zaten bir hesabın var mı?';
+
+  @override
+  String get deleteAccount => 'Hesabı sil';
 }

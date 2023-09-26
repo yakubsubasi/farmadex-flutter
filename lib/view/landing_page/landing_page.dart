@@ -1,3 +1,4 @@
+import 'package:farmadex/view/authentication/data/firebase_auth_repository.dart';
 import 'package:farmadex/view/onboarding/view/onboarding_view.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
@@ -95,16 +96,10 @@ class CustonDrawer extends StatelessWidget {
   Widget build(BuildContext context) {
     return NavigationDrawer(
       children: [
-        DrawerHeader(
-            decoration: BoxDecoration(
-              color: Theme.of(context).primaryColor,
-            ),
-            child: const Text(
-              'Menu',
-            )),
+        const CustomDrawerHeader(),
         ListTile(
           leading: const Icon(Icons.account_circle),
-          title: const Text('Profile'),
+          title: const Text('Profil'),
           onTap: () {
             //Navigate to profile page
             context.push('/profile');
@@ -119,16 +114,90 @@ class CustonDrawer extends StatelessWidget {
           },
         ),
         ListTile(
-          leading: const Icon(Icons.settings),
-          title: const Text('Settings'),
-          onTap: () {},
+          leading: const Icon(Icons.feedback),
+          title: const Text('Bize Ulaşın'),
+          onTap: () {
+            context.push('/feedBack');
+          },
         ),
-        const ListTile(
-          leading: Icon(Icons.logout),
-          title: Text('Çıkış Yap'),
-          onTap: null,
+
+        /// flex
+        const Expanded(
+          child: SizedBox(),
+        ),
+
+        Consumer(
+          builder: (BuildContext context, WidgetRef ref, Widget? child) {
+            final auth = ref.watch(authRepositoryProvider);
+            return ListTile(
+              leading: const Icon(Icons.logout),
+              title: const Text('Çıkış Yap'),
+              onTap: () async {
+                await auth.signOut();
+              },
+            );
+          },
         ),
       ],
+    );
+  }
+}
+
+class CustomDrawerHeader extends ConsumerWidget {
+  const CustomDrawerHeader({super.key});
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final photoURL = ref.watch(firebaseAuthProvider).currentUser?.photoURL;
+    final name = ref.watch(appUserProviderProvider)?.name;
+    final email = ref.watch(appUserProviderProvider)?.email;
+
+    return DrawerHeader(
+      child: Column(
+        children: [
+          const Text('Menu'),
+          const SizedBox(
+            height: 20,
+          ),
+          GestureDetector(
+            onTap: () {
+              //Navigate to profile page
+              context.push('/profile');
+            },
+            child: Row(
+              children: [
+                CircleAvatar(
+                  radius: 30,
+                  backgroundImage:
+                      photoURL != null ? NetworkImage(photoURL) : null,
+                  child: photoURL == null
+                      ? const Icon(Icons.account_circle, size: 60)
+                      : null, //TODO: Add placeholder image
+                ),
+                const SizedBox(
+                  width: 20,
+                ),
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      name ?? '',
+                      style: Theme.of(context).textTheme.bodyLarge,
+                    ),
+                    const SizedBox(
+                      height: 8,
+                    ),
+                    Text(
+                      email ?? '',
+                      style: Theme.of(context).textTheme.bodySmall,
+                    ),
+                  ],
+                ),
+              ],
+            ),
+          ),
+        ],
+      ),
     );
   }
 }

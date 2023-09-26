@@ -9,6 +9,7 @@ class OnboardingStateProvider extends _$OnboardingStateProvider {
   @override
   OnboardingModel build() {
     return OnboardingModel(
+      name: null,
       userType: null,
       speciality: null,
       classNumber: null,
@@ -17,6 +18,7 @@ class OnboardingStateProvider extends _$OnboardingStateProvider {
 
   void changeUserType(UserType userType) {
     state = OnboardingModel(
+      name: state.name,
       userType: userType,
       speciality: state.speciality,
       classNumber: state.classNumber,
@@ -25,6 +27,7 @@ class OnboardingStateProvider extends _$OnboardingStateProvider {
 
   void changeClass(int classNumber) {
     state = OnboardingModel(
+      name: state.name,
       userType: state.userType,
       speciality: state.speciality,
       classNumber: classNumber,
@@ -33,24 +36,19 @@ class OnboardingStateProvider extends _$OnboardingStateProvider {
 
   void changeSpeciality(Speciality speciality) {
     state = OnboardingModel(
+      name: state.name,
       userType: state.userType,
       speciality: speciality,
       classNumber: state.classNumber,
     );
   }
+
+  void changeName(String name) {
+    state = OnboardingModel(
+      name: name,
+      userType: state.userType,
+      speciality: state.speciality,
+      classNumber: state.classNumber,
+    );
+  }
 }
-
-
-// Future<void> userUploadtoSupabase(
-//     UserUploadtoSupabaseRef ref, AppUser user) async {
-//   final client = Supabase.instance.client;
-//   final response = await client.from('users').insert([
-//     {
-//       'id': user.id,
-//       'email': user.email,
-//       'user_type': user.userType.toString(),
-//       'speciality': user.speciality.toString(),
-//       'class_number': user.classNumber,
-//     }
-//   ]);
-// }

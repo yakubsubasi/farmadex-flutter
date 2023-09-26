@@ -20,6 +20,26 @@ class CustomProfileScreen extends ConsumerWidget {
         title: const Text('Profil'),
       ),
       providers: authProviders,
+      children: const [
+        AgreementButton(),
+        SizedBox(
+          height: 50,
+        ),
+      ],
+    );
+  }
+}
+
+class AgreementButton extends StatelessWidget {
+  const AgreementButton({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return TextButton(
+      onPressed: () {
+        context.push('/agreement');
+      },
+      child: const Text('Kullanıcı Sözleşmesi'),
     );
   }
 }

@@ -6,7 +6,7 @@ part of 'agreement_page_provider.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$fetchAgreementHash() => r'3b931ceb7f5bcaa7eb39032d5c1b9543c8320aca';
+String _$fetchAgreementHash() => r'aa464e02e0668912d0d353487e2489ee2f218375';
 
 /// See also [fetchAgreement].
 @ProviderFor(fetchAgreement)

@@ -15,6 +15,7 @@ migrate_working_dir/
 
 lib/consts/supabase_key.dart
 lib/firebase_options.dart
+flutter_launcher_icons.yaml
 
 
 # IntelliJ related
