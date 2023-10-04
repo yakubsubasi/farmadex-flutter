@@ -17,6 +17,10 @@ class AuthRepository {
   Future<void> signInAnonymously() {
     return _auth.signInAnonymously();
   }
+
+  Future<void> updateDisplayName(String name) async {
+    await _auth.currentUser?.updateDisplayName(name);
+  }
 }
 
 @Riverpod(keepAlive: true)

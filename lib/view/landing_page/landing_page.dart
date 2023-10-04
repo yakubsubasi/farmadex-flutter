@@ -1,3 +1,4 @@
+import 'package:farmadex/core/consts/app_consts.dart';
 import 'package:farmadex/view/authentication/data/firebase_auth_repository.dart';
 import 'package:farmadex/view/onboarding/view/onboarding_view.dart';
 import 'package:flutter/material.dart';
@@ -11,9 +12,23 @@ class LandingPage extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final isOnboarded = ref.watch(appUserProviderProvider) != null;
+    final isOnboarded = ref.watch(appUserProviderProvider.notifier).checkUser();
 
-    return isOnboarded ? const MainPage() : const OnboardPage();
+    return FutureBuilder(
+        future: isOnboarded,
+        builder: (BuildContext context, AsyncSnapshot<bool> snapshot) {
+          if (snapshot.hasData) {
+            if (snapshot.data!) {
+              return const MainPage();
+            } else {
+              return const OnboardPage();
+            }
+          } else {
+            return const Center(
+              child: CircularProgressIndicator(),
+            );
+          }
+        });
   }
 }
 
@@ -36,7 +51,7 @@ class MainPage extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  'Farmadex',
+                  AppConsts.appName,
                   style: Theme.of(context).textTheme.displaySmall?.copyWith(
                         color: Colors.black,
                         fontWeight: FontWeight.bold,
@@ -46,7 +61,7 @@ class MainPage extends StatelessWidget {
                   height: 24,
                 ),
                 Text(
-                    'Farmadex, yüzlerce birinci basamak için taslak reçte şablonu ile karar destek mekanizması sağlar, tedaviler hakkında faydalı bilgiler ile karar destek sürecinizi kolaylaştırır.',
+                    '${AppConsts.appName}, yüzlerce birinci basamak için taslak reçte şablonu ile karar destek mekanizması sağlar, tedaviler hakkında faydalı bilgiler ile karar destek sürecinizi kolaylaştırır.',
                     style: Theme.of(context).textTheme.bodyLarge),
                 const SizedBox(
                   height: 30,
@@ -89,11 +104,11 @@ class MainPage extends StatelessWidget {
   }
 }
 
-class CustonDrawer extends StatelessWidget {
+class CustonDrawer extends ConsumerWidget {
   const CustonDrawer({super.key});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     return NavigationDrawer(
       children: [
         const CustomDrawerHeader(),
@@ -120,12 +135,6 @@ class CustonDrawer extends StatelessWidget {
             context.push('/feedBack');
           },
         ),
-
-        /// flex
-        const Expanded(
-          child: SizedBox(),
-        ),
-
         Consumer(
           builder: (BuildContext context, WidgetRef ref, Widget? child) {
             final auth = ref.watch(authRepositoryProvider);

@@ -51,13 +51,9 @@ class PrescSearchPage extends StatelessWidget {
       body: SafeArea(
         child: CustomScrollView(slivers: [
           SliverAppBar(
-            leading: IconButton(
-              icon: const Icon(Icons.arrow_back_ios_new),
-              onPressed: () {
-                Navigator.pop(context);
-              },
-            ),
-            title: const Text('Farmadex'),
+            title: Text('Reçete Önerileri'),
+            floating: true,
+            snap: true,
           ),
           SliverToBoxAdapter(
             child: Padding(

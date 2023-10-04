@@ -7,7 +7,7 @@ part 'search_page_provider.g.dart';
 // to generate the code, run the following command in the terminal
 // flutter packages pub run build_runner watch --delete-conflicting-outputs
 
-@riverpod
+@Riverpod(keepAlive: true)
 FutureOr<List<Disease>> getDiseases(GetDiseasesRef ref) async {
   final client = ref.watch(supabaseClientProvider);
   final response =

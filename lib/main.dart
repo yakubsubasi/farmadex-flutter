@@ -1,3 +1,4 @@
+import 'package:farmadex/core/consts/app_consts.dart';
 import 'package:farmadex/core/consts/auth_local.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_ui_localizations/firebase_ui_localizations.dart';
@@ -5,7 +6,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
-
 import 'package:farmadex/core/consts/supabase_key.dart';
 import 'package:farmadex/firebase_options.dart';
 import 'package:farmadex/router/router.dart';
@@ -42,10 +42,9 @@ class MyApp extends ConsumerWidget {
       ],
       routerConfig: router,
       debugShowCheckedModeBanner: false,
-      title: 'Farmadex',
+      title: AppConsts.appName,
       theme: ThemeData(
         useMaterial3: true,
-        primarySwatch: Colors.blue,
       ),
     );
   }

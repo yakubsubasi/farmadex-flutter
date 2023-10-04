@@ -33,6 +33,7 @@ dependencies:
   freezed_annotation: ^2.4.1
   flutter_html: ^3.0.0-beta.2
   flutter_launcher_icons: ^0.13.1
+  flutter_svg: ^2.0.7
   
 
 
@@ -51,6 +52,7 @@ flutter:
   assets:
     - assets/images/
     - assets/icons/
+    - assets/logo/
   
 fonts:
   - family: SocialIcons

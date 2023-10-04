@@ -5,7 +5,7 @@ import 'package:farmadex/view/authentication/presentation/custom_profile_screen.
 import 'package:farmadex/view/authentication/presentation/custom_sign_in_screen.dart';
 import 'package:farmadex/view/feed_back_page/feed_back_view.dart';
 import 'package:farmadex/view/landing_page/landing_page.dart';
-import 'package:flutter/material.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:go_router/go_router.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
@@ -37,35 +37,35 @@ GoRouter goRouter(GoRouterRef ref) {
         GoRoute(
           path: '/agreement',
           name: AppRoute.agreement.name,
-          pageBuilder: (context, state) => const MaterialPage(
+          pageBuilder: (context, state) => const CupertinoPage(
             child: AgreementPage(),
           ),
         ),
         GoRoute(
           path: '/',
           name: AppRoute.landingPage.name,
-          pageBuilder: (contsext, state) => const NoTransitionPage(
+          pageBuilder: (contsext, state) => const CupertinoPage(
             child: LandingPage(),
           ),
         ),
         GoRoute(
           path: '/feedBack',
           name: AppRoute.feedBack.name,
-          pageBuilder: (context, state) => const NoTransitionPage(
+          pageBuilder: (context, state) => const CupertinoPage(
             child: FeedBackPage(),
           ),
         ),
         GoRoute(
           path: '/signIn',
           name: AppRoute.signIn.name,
-          pageBuilder: (context, state) => const NoTransitionPage(
+          pageBuilder: (context, state) => const CupertinoPage(
             child: CustomSignInScreen(),
           ),
         ),
         GoRoute(
             path: '/profile',
             name: AppRoute.profile.name,
-            pageBuilder: (context, state) => const NoTransitionPage(
+            pageBuilder: (context, state) => const CupertinoPage(
                   child: CustomProfileScreen(),
                 )),
       ]);

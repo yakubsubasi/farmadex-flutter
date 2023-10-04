@@ -17,13 +17,6 @@ class DiseaseDetailPage extends StatelessWidget {
         centerTitle: true,
         backgroundColor: Colors.transparent,
         elevation: 0,
-        leading: IconButton(
-          color: Colors.black,
-          onPressed: () {
-            Navigator.pop(context);
-          },
-          icon: const Icon(Icons.arrow_back_ios_new),
-        ),
         title: Text(
           disease.name ?? ' ',
           style: const TextStyle(color: Colors.black),

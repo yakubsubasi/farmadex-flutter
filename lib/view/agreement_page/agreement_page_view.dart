@@ -13,13 +13,8 @@ class AgreementPage extends ConsumerWidget {
 
     return Scaffold(
         appBar: AppBar(
-            title: const Text('Kullanıcı Sözleşmesi'),
-            leading: IconButton(
-              icon: const Icon(Icons.arrow_back),
-              onPressed: () {
-                Navigator.pop(context);
-              },
-            )),
+          title: const Text('Kullanıcı Sözleşmesi'),
+        ),
         body: SafeArea(
           child: SingleChildScrollView(
             child: Container(

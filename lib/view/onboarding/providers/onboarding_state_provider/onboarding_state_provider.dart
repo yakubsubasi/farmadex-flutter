@@ -1,3 +1,4 @@
+import 'package:farmadex/view/authentication/data/firebase_auth_repository.dart';
 import 'package:farmadex/view/onboarding/model/onboarding_model.dart';
 import 'package:farmadex_models/farmadex_models.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
@@ -50,5 +51,6 @@ class OnboardingStateProvider extends _$OnboardingStateProvider {
       speciality: state.speciality,
       classNumber: state.classNumber,
     );
+    ref.watch(authRepositoryProvider).updateDisplayName(name);
   }
 }

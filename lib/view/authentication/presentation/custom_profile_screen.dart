@@ -12,11 +12,6 @@ class CustomProfileScreen extends ConsumerWidget {
     final authProviders = ref.watch(authProvidersProvider);
     return ProfileScreen(
       appBar: AppBar(
-        leading: BackButton(
-          onPressed: () {
-            context.go('/');
-          },
-        ),
         title: const Text('Profil'),
       ),
       providers: authProviders,

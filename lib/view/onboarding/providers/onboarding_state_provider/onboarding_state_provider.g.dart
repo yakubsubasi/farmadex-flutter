@@ -7,7 +7,7 @@ part of 'onboarding_state_provider.dart';
 // **************************************************************************
 
 String _$onboardingStateProviderHash() =>
-    r'eeb3904ab809bd32866d75e8eb12b7cbd08d0e9f';
+    r'735c46a253cae9dab52c3076ddf13564b1b7eaa0';
 
 /// See also [OnboardingStateProvider].
 @ProviderFor(OnboardingStateProvider)
