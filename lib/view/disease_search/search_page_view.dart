@@ -1,11 +1,12 @@
+import 'package:farmadex/view/disease_search/provider/search_page_provider.dart';
+import 'package:farmadex/view/disease_search/widgets/speciality_card.dart';
 import 'package:farmadex_models/farmadex_models.dart';
 import 'package:farmadex/view/disease_detail/detail_page/detail_page.dart';
-import 'package:farmadex/view/disease_list/category_detail_page.dart';
-import 'package:farmadex/view/disease_list/provider/search_page_provider.dart';
-import 'package:farmadex/view/disease_list/widgets/speciality_card.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:hive_flutter/hive_flutter.dart';
+
+import 'category_detail_page.dart';
 
 // this widget is a gate to fetch data from supabase
 
@@ -50,7 +51,7 @@ class PrescSearchPage extends StatelessWidget {
     return Scaffold(
       body: SafeArea(
         child: CustomScrollView(slivers: [
-          SliverAppBar(
+          const SliverAppBar(
             title: Text('Reçete Önerileri'),
             floating: true,
             snap: true,
@@ -85,23 +86,18 @@ class PrescSearchPage extends StatelessWidget {
           SliverToBoxAdapter(
             child: Padding(
               padding: const EdgeInsets.all(16.0),
-              child: SearchAnchor.bar(
-                barElevation: MaterialStateProperty.all(1.0),
-                barHintText: 'Örnek reçete ara..',
+              child: SearchAnchor(
                 suggestionsBuilder:
                     (BuildContext context, SearchController controller) {
                   if (controller.text.isEmpty) {
                     if (searchHistoryBox.isNotEmpty) {
                       return getHistoryList(controller);
                     }
-                    return <Widget>[
-                      const Center(
-                          child: Text(
-                        'No search history.',
-                      ))
-                    ];
                   }
                   return getSuggestions(context, controller);
+                },
+                builder: (BuildContext context, SearchController controller) {
+                  return const CustomSearchBar();
                 },
               ),
             ),
@@ -192,5 +188,43 @@ class PrescSearchPage extends StatelessWidget {
         context,
         MaterialPageRoute(
             builder: (context) => DiseaseDetailPage(disease: filteredDisease)));
+  }
+}
+
+/// Custom Serach Bar view without functionality
+class CustomSearchBar extends StatelessWidget {
+  final String hintText;
+  const CustomSearchBar({
+    super.key,
+    this.hintText = 'Hastalık Ara',
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      height: 50,
+      decoration: BoxDecoration(
+          border: Border.all(
+              color: Theme.of(context).primaryColor.withOpacity(0.1),
+              width: 1.5),
+          color: Theme.of(context).primaryColor.withOpacity(0.1),
+          borderRadius: BorderRadius.circular(10)),
+      child: Row(
+        children: [
+          const SizedBox(
+            width: 10,
+          ),
+          const Icon(Icons.search),
+          const SizedBox(
+            width: 10,
+          ),
+          Expanded(
+            child: Text(
+              hintText,
+            ),
+          ),
+        ],
+      ),
+    );
   }
 }

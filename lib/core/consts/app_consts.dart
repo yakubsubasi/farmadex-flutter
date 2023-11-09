@@ -2,5 +2,5 @@ import 'package:flutter/foundation.dart';
 
 @immutable
 class AppConsts {
-  static const String appName = 'MedSpace';
+  static const String appName = 'MedBase';
 }

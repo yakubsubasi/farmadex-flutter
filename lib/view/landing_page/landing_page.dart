@@ -4,7 +4,7 @@ import 'package:farmadex/view/onboarding/view/onboarding_view.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import '../disease_list/search_page_view.dart';
+import '../disease_search/search_page_view.dart';
 import '../onboarding/providers/app_user_provider/app_user_provider.dart';
 
 class LandingPage extends ConsumerWidget {
@@ -181,7 +181,7 @@ class CustomDrawerHeader extends ConsumerWidget {
                       photoURL != null ? NetworkImage(photoURL) : null,
                   child: photoURL == null
                       ? const Icon(Icons.account_circle, size: 60)
-                      : null, //TODO: Add placeholder image
+                      : null,
                 ),
                 const SizedBox(
                   width: 20,
