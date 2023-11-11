@@ -894,6 +894,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.2.3"
+  purchases_flutter:
+    dependency: "direct main"
+    description:
+      name: purchases_flutter
+      sha256: "3c112f66b717df994535b0aaff7df91c4498bb88443123a0d6e5585b1108d379"
+      url: "https://pub.dev"
+    source: hosted
+    version: "6.2.0"
   realtime_client:
     dependency: transitive
     description:
