@@ -2,7 +2,6 @@ import 'package:farmadex/view/authentication/data/firebase_auth_repository.dart'
 import 'package:farmadex/view/authentication/domain/app_user.dart';
 import 'package:farmadex/view/onboarding/providers/app_user_provider/app_user_provider.dart';
 import 'package:farmadex/view/onboarding/providers/onboarding_state_provider/onboarding_state_provider.dart';
-import 'package:farmadex/view/onboarding/providers/submit/on_submit.dart';
 import 'package:firebase_auth/firebase_auth.dart' as auth;
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';

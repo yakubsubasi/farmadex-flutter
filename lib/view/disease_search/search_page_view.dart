@@ -23,7 +23,20 @@ class PrescsPage extends ConsumerWidget {
           );
         },
         error: (error, stackTrace) {
-          return Text(error.toString());
+          WidgetsBinding.instance.addPostFrameCallback((_) {
+            ScaffoldMessenger.of(context).showSnackBar(
+              const SnackBar(
+                content: Text('Bağlantı sağlayarak tekrar deneyin'),
+              ),
+            );
+          });
+          // Navigate to MainPage(); with no transition
+          return Scaffold(
+            appBar: AppBar(),
+            body: const Center(
+              child: Text('İnternet bağlantısı yok.'),
+            ),
+          );
         },
         loading: () => const Center(
               child: CircularProgressIndicator(),

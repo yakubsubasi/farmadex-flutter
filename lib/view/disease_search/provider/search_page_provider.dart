@@ -1,4 +1,6 @@
+import 'package:connectivity/connectivity.dart';
 import 'package:farmadex/core/supabase_client/supabase_client_provider.dart';
+import 'package:farmadex/service/connectivity_service/connectivity_service.dart';
 import 'package:farmadex_models/farmadex_models.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
@@ -10,6 +12,12 @@ part 'search_page_provider.g.dart';
 @Riverpod(keepAlive: true)
 FutureOr<List<Disease>> getDiseases(GetDiseasesRef ref) async {
   final client = ref.watch(supabaseClientProvider);
+  final connectivity = await ConnectivityService().checkConnectivity();
+
+  if (connectivity == ConnectivityResult.none) {
+    throw Exception('No internet connection');
+  }
+
   final response =
       await client.from('diseases').select('*, prescriptions(*, medicines(*))');
 

@@ -39,6 +39,7 @@ dependencies:
   flutter_svg: ^2.0.7
   rename: ^3.0.1
   purchases_flutter: ^6.2.0
+  connectivity: ^3.0.6
   
 
 
