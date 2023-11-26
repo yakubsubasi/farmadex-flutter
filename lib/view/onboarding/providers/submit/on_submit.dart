@@ -1,5 +1,6 @@
 import 'package:farmadex/view/authentication/domain/app_user.dart';
 import 'package:farmadex/view/onboarding/model/onboarding_model.dart';
+import 'package:farmadex/view/onboarding/providers/app_user_provider/app_user_provider.dart';
 import 'package:farmadex/view/onboarding/providers/onboarding_state_provider/onboarding_state_provider.dart';
 import 'package:firebase_auth/firebase_auth.dart' as auth;
 import 'package:riverpod_annotation/riverpod_annotation.dart';
@@ -12,7 +13,6 @@ part 'on_submit.g.dart';
 
 @riverpod
 Future<void> onSubmit(OnSubmitRef ref) async {
-  final client = Supabase.instance.client;
   final onboardstate = ref.watch(onboardingStateProviderProvider);
   final currentUser = auth.FirebaseAuth.instance.currentUser;
 
@@ -25,7 +25,7 @@ Future<void> onSubmit(OnSubmitRef ref) async {
   /// This code updates the user state in the app.
 
   /// This code adds the user to the database.
-  await _addUserToDb(client, user);
+  await ref.read(appUserRepositoryProvider.notifier).createUser(user);
 }
 
 AppUser _createUser(auth.User currentUser, OnboardingModel onboardstate) {
@@ -40,8 +40,4 @@ AppUser _createUser(auth.User currentUser, OnboardingModel onboardstate) {
     userType: onboardstate.userType,
     registerDate: DateTime.now(),
   );
-}
-
-Future<void> _addUserToDb(SupabaseClient client, AppUser user) async {
-  await client.from('users').insert(user.toJson());
 }

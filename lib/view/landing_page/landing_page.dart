@@ -12,23 +12,39 @@ class LandingPage extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final isOnboarded = ref.watch(appUserProviderProvider.notifier).checkUser();
+    final onboardCheck = ref.watch(appUserRepositoryProvider);
 
-    return FutureBuilder(
-        future: isOnboarded,
-        builder: (BuildContext context, AsyncSnapshot<bool> snapshot) {
-          if (snapshot.hasData) {
-            if (snapshot.data!) {
-              return const MainPage();
-            } else {
-              return const OnboardPage();
-            }
-          } else {
-            return const Center(
-              child: CircularProgressIndicator(),
-            );
-          }
-        });
+    return onboardCheck.when(
+      data: (user) {
+        if (user != null) {
+          return const MainPage();
+        } else {
+          return const OnboardPage();
+        }
+      },
+      loading: () => const Center(
+        child: CircularProgressIndicator(),
+      ),
+      error: (error, stackTrace) => const Center(
+        child: Text('Error'),
+      ),
+    );
+
+    // return FutureBuilder(
+    //     future: isOnboarded,
+    //     builder: (BuildContext context, AsyncSnapshot<bool> snapshot) {
+    //       if (snapshot.hasData) {
+    //         if (snapshot.data!) {
+    //           return const MainPage();
+    //         } else {
+    //           return const OnboardPage();
+    //         }
+    //       } else {
+    //         return const Center(
+    //           child: CircularProgressIndicator(),
+    //         );
+    //       }
+    //     });
   }
 }
 
@@ -158,8 +174,9 @@ class CustomDrawerHeader extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final photoURL = ref.watch(firebaseAuthProvider).currentUser?.photoURL;
-    final name = ref.watch(appUserProviderProvider)?.name;
-    final email = ref.watch(appUserProviderProvider)?.email;
+
+    final name = ref.watch(appUserRepositoryProvider).asData?.value?.name;
+    final email = ref.watch(appUserRepositoryProvider).asData?.value?.email;
 
     return DrawerHeader(
       child: Column(
