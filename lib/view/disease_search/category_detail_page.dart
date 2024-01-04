@@ -23,30 +23,53 @@ class CategoryResultsPage extends StatelessWidget {
             pinned: true,
             flexibleSpace: FlexibleSpaceBar(
               titlePadding: const EdgeInsets.only(left: 16.0, bottom: 16.0),
-              title: Align(
-                alignment: Alignment.bottomLeft,
-                child: Text(speciality.valeu,
-                    style: Theme.of(context).textTheme.headlineMedium?.copyWith(
-                          color: const Color(0xFF000000),
-                        )),
-              ),
-              expandedTitleScale: 1.5,
-              background: Hero(
-                tag: speciality.toString(),
-                child: Align(
-                  alignment: Alignment.centerRight,
-                  child: Container(
-                    color: Colors.white38,
-                    child: Image.asset(
-                      speciality.imagepath,
-                      fit: BoxFit.cover,
+              title: Row(
+                crossAxisAlignment: CrossAxisAlignment.end,
+                children: [
+                  Expanded(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      mainAxisAlignment: MainAxisAlignment.end,
+                      children: [
+                        Text(
+                          speciality.valeu,
+                          style: Theme.of(context)
+                              .textTheme
+                              .headlineMedium
+                              ?.copyWith(
+                                color: const Color(0xFF000000),
+                              ),
+                          maxLines: 2,
+                          overflow: TextOverflow.ellipsis,
+                        ),
+                        const SizedBox(height: 4.0),
+                        const Text(
+                          'Subtitle',
+                          style: TextStyle(
+                            fontSize: 12,
+                            color: Colors.grey,
+                          ),
+                        ),
+                      ],
                     ),
                   ),
-                ),
+                  const SizedBox(width: 20.0),
+                  Hero(
+                    tag: speciality.toString(),
+                    child: Container(
+                      width: MediaQuery.of(context).size.width * 0.4,
+                      color: Colors.white38,
+                      child: Image.asset(
+                        speciality.imagepath,
+                        fit: BoxFit.cover,
+                      ),
+                    ),
+                  ),
+                ],
               ),
+              expandedTitleScale: 1,
             ),
           ),
-
           // text 'Tüm reçeteler'
           //
           const SliverToBoxAdapter(

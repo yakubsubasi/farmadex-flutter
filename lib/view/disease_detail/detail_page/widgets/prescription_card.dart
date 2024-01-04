@@ -50,7 +50,9 @@ class PrescriptionCard extends StatelessWidget {
                         ),
                       ),
                       const SizedBox(width: 10),
-                      Text(prescription.name ?? ' '),
+                      Flexible(
+                        child: Text(prescription.name ?? ' '),
+                      )
                     ],
                   ),
                   Text(prescription.shortDescription ?? ' '),

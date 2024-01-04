@@ -33,8 +33,22 @@ class PrescsPage extends ConsumerWidget {
           // Navigate to MainPage(); with no transition
           return Scaffold(
             appBar: AppBar(),
-            body: const Center(
-              child: Text('İnternet bağlantısı yok.'),
+            body: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                const Center(
+                  child: Text('İnternet bağlantısı yok.'),
+                ),
+                SizedBox(
+                  height: 20,
+                ),
+                ElevatedButton(
+                  onPressed: () {
+                    ref.refresh(getDiseasesProvider);
+                  },
+                  child: const Text('Yeniden dene'),
+                ),
+              ],
             ),
           );
         },
