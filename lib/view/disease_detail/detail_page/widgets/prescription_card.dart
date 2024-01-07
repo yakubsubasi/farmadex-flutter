@@ -91,7 +91,8 @@ class PrescriptionCard extends StatelessWidget {
                 );
               },
             ),
-            if (prescription.explanation != null) ...[
+            if (prescription.explanation != null &&
+                prescription.explanation!.isNotEmpty) ...[
               const Divider(
                 thickness: 2,
                 height: 20,

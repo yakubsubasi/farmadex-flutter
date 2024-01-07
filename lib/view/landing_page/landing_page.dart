@@ -175,7 +175,7 @@ class CustomDrawerHeader extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final photoURL = ref.watch(firebaseAuthProvider).currentUser?.photoURL;
 
-    final name = ref.watch(appUserRepositoryProvider).asData?.value?.name;
+    final name = ref.watch(firebaseAuthProvider).currentUser?.displayName;
     final email = ref.watch(appUserRepositoryProvider).asData?.value?.email;
 
     return DrawerHeader(

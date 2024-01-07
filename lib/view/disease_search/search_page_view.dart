@@ -39,7 +39,7 @@ class PrescsPage extends ConsumerWidget {
                 const Center(
                   child: Text('İnternet bağlantısı yok.'),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 20,
                 ),
                 ElevatedButton(

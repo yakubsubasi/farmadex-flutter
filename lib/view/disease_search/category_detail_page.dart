@@ -43,9 +43,9 @@ class CategoryResultsPage extends StatelessWidget {
                           overflow: TextOverflow.ellipsis,
                         ),
                         const SizedBox(height: 4.0),
-                        const Text(
-                          'Subtitle',
-                          style: TextStyle(
+                        Text(
+                          '${diseases.length} hastalık',
+                          style: const TextStyle(
                             fontSize: 12,
                             color: Colors.grey,
                           ),
