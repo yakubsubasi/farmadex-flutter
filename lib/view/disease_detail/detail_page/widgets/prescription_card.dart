@@ -92,7 +92,8 @@ class PrescriptionCard extends StatelessWidget {
               },
             ),
             if (prescription.explanation != null &&
-                prescription.explanation!.isNotEmpty) ...[
+                prescription.explanation!.isNotEmpty &&
+                prescription.explanation!.first != "") ...[
               const Divider(
                 thickness: 2,
                 height: 20,
@@ -153,7 +154,7 @@ class MedicineSection extends StatelessWidget {
                   ),
                 ),
                 TextSpan(
-                  text: '${medicine.howOften} x',
+                  text: '${medicine.howOften.toString()} x',
                 ),
                 TextSpan(
                   text: ' ${medicine.howMany}      ',

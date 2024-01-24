@@ -350,10 +350,10 @@ packages:
     description:
       path: "."
       ref: HEAD
-      resolved-ref: "9c7c228407ef9d899c10f4e3e1bd123bbcdfc2e5"
+      resolved-ref: a9004a66bbe9cf19d49b9a121f2d1d50296c2524
       url: "https://github.com/yakubsubasi/farmadex_models.git"
     source: git
-    version: "0.0.3"
+    version: "0.0.6"
   ffi:
     dependency: transitive
     description:
@@ -479,6 +479,14 @@ packages:
     description: flutter
     source: sdk
     version: "0.0.0"
+  flutter_countdown_timer:
+    dependency: "direct main"
+    description:
+      name: flutter_countdown_timer
+      sha256: dfcbd7d6f76a5589f78f3f3ba2f9ea2e199368eccc1adce4153ce985b9587bc5
+      url: "https://pub.dev"
+    source: hosted
+    version: "4.1.0"
   flutter_html:
     dependency: "direct main"
     description:
@@ -487,6 +495,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "3.0.0-beta.2"
+  flutter_inappwebview:
+    dependency: transitive
+    description:
+      name: flutter_inappwebview
+      sha256: d198297060d116b94048301ee6749cd2e7d03c1f2689783f52d210a6b7aba350
+      url: "https://pub.dev"
+    source: hosted
+    version: "5.8.0"
   flutter_keyboard_visibility:
     dependency: transitive
     description:
@@ -710,6 +726,30 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "4.1.3"
+  in_app_purchases_interface:
+    dependency: transitive
+    description:
+      name: in_app_purchases_interface
+      sha256: bce28cf91213f23d53035d8c2c02b3ed45c05f5edfcbe1e985da65ceb75c6c70
+      url: "https://pub.dev"
+    source: hosted
+    version: "1.0.0"
+  in_app_purchases_intl:
+    dependency: transitive
+    description:
+      name: in_app_purchases_intl
+      sha256: "162d0d10cb7634b5ada3245f85d37571d0d6804ce0488239437e6c1ffae53d30"
+      url: "https://pub.dev"
+    source: hosted
+    version: "1.0.1"
+  in_app_purchases_paywall_ui:
+    dependency: "direct main"
+    description:
+      name: in_app_purchases_paywall_ui
+      sha256: "6350e46db80e3b56f845ded123f36ed50e925b1081ceeb41af9a82a0a8fad5ea"
+      url: "https://pub.dev"
+    source: hosted
+    version: "1.0.1"
   intl:
     dependency: transitive
     description:
@@ -990,6 +1030,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "3.0.1"
+  responsive_spacing:
+    dependency: transitive
+    description:
+      name: responsive_spacing
+      sha256: "946e9e03d6b3c389e0bf6962da8c1a6f932955db3be08aba8cff8d97e5901060"
+      url: "https://pub.dev"
+    source: hosted
+    version: "1.1.0"
   retry:
     dependency: transitive
     description:

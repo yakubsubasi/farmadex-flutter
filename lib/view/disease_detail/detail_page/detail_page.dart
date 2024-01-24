@@ -14,14 +14,17 @@ class DiseaseDetailPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        centerTitle: true,
         backgroundColor: Colors.transparent,
         elevation: 0,
         title: Text(
           disease.name ?? ' ',
-          style: const TextStyle(color: Colors.black),
-          textAlign: TextAlign.center,
+          style: const TextStyle(
+            color: Colors.black,
+            fontSize: 20,
+            fontWeight: FontWeight.bold,
+          ),
         ),
+        centerTitle: true,
       ),
       body: SafeArea(
         child: ListView.builder(

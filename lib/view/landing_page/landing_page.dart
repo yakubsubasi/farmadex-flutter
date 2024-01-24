@@ -77,7 +77,7 @@ class MainPage extends StatelessWidget {
                   height: 24,
                 ),
                 Text(
-                    '${AppConsts.appName}, yüzlerce birinci basamak için taslak reçte şablonu ile karar destek mekanizması sağlar, tedaviler hakkında faydalı bilgiler ile karar destek sürecinizi kolaylaştırır.',
+                    '${AppConsts.appName}, yüzlerce birinci basamak için taslak reçete şablonu ile karar destek mekanizması sağlar, tedaviler hakkında faydalı bilgiler ile karar destek sürecinizi kolaylaştırır.',
                     style: Theme.of(context).textTheme.bodyLarge),
                 const SizedBox(
                   height: 30,
@@ -102,7 +102,7 @@ class MainPage extends StatelessWidget {
                     onPressed: () => Navigator.push(
                         context,
                         MaterialPageRoute(
-                            builder: (context) => const PrescsPage())),
+                            builder: (context) => const PrescsPageGate())),
                     child: const Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [

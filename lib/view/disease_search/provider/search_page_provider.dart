@@ -29,3 +29,23 @@ FutureOr<List<Disease>> getDiseases(GetDiseasesRef ref) async {
 
   return diseases;
 }
+
+@riverpod
+class SearchDisease extends _$SearchDisease {
+  @override
+  List<Disease> build() {
+    return _getDisease();
+  }
+
+  searchDisease(String query) {
+    final diseases = _getDisease();
+    final filteredDiseases = diseases.where((disease) {
+      return disease.name!.toLowerCase().contains(query.toLowerCase());
+    }).toList();
+    state = filteredDiseases;
+  }
+
+  List<Disease> _getDisease() {
+    return ref.watch(getDiseasesProvider).asData!.value;
+  }
+}
