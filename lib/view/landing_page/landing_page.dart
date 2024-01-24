@@ -2,6 +2,7 @@ import 'package:farmadex/core/consts/app_consts.dart';
 import 'package:farmadex/view/authentication/data/firebase_auth_repository.dart';
 import 'package:farmadex/view/onboarding/view/onboarding_view.dart';
 import 'package:flutter/material.dart';
+import 'package:gap/gap.dart';
 import 'package:go_router/go_router.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../disease_search/search_page_view.dart';
@@ -56,7 +57,7 @@ class MainPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      drawer: const CustonDrawer(),
+      drawer: const CustomDrawer(),
       appBar: AppBar(),
       body: SafeArea(
         child: Padding(
@@ -120,50 +121,60 @@ class MainPage extends StatelessWidget {
   }
 }
 
-class CustonDrawer extends ConsumerWidget {
-  const CustonDrawer({super.key});
+class CustomDrawer extends ConsumerWidget {
+  const CustomDrawer({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    return NavigationDrawer(
-      children: [
-        const CustomDrawerHeader(),
-        ListTile(
-          leading: const Icon(Icons.account_circle),
-          title: const Text('Profil'),
-          onTap: () {
-            //Navigate to profile page
-            context.push('/profile');
-          },
-        ),
-        ListTile(
-          leading: const Icon(Icons.assignment),
-          title: const Text('Kullanıcı Sözleşmesi'),
-          onTap: () {
-            //Navigate to profile page
-            context.push('/agreement');
-          },
-        ),
-        ListTile(
-          leading: const Icon(Icons.feedback),
-          title: const Text('Bize Ulaşın'),
-          onTap: () {
-            context.push('/feedBack');
-          },
-        ),
-        Consumer(
-          builder: (BuildContext context, WidgetRef ref, Widget? child) {
-            final auth = ref.watch(authRepositoryProvider);
-            return ListTile(
-              leading: const Icon(Icons.logout),
-              title: const Text('Çıkış Yap'),
-              onTap: () async {
-                await auth.signOut();
+    return Drawer(
+      child: Column(
+        children: [
+          Expanded(
+            child: ListView(
+              children: [
+                const CustomDrawerHeader(),
+                ListTile(
+                  leading: const Icon(Icons.account_circle),
+                  title: const Text('Profil'),
+                  onTap: () {
+                    // Navigate to profile page
+                    Navigator.pushNamed(context, '/profile');
+                  },
+                ),
+                ListTile(
+                  leading: const Icon(Icons.assignment),
+                  title: const Text('Kullanıcı Sözleşmesi'),
+                  onTap: () {
+                    // Navigate to agreement page
+                    Navigator.pushNamed(context, '/agreement');
+                  },
+                ),
+                ListTile(
+                  leading: const Icon(Icons.feedback),
+                  title: const Text('Bize Ulaşın'),
+                  onTap: () {
+                    Navigator.pushNamed(context, '/feedBack');
+                  },
+                ),
+              ],
+            ),
+          ),
+          SafeArea(
+            child: Consumer(
+              builder: (BuildContext context, WidgetRef ref, Widget? child) {
+                final auth = ref.watch(authRepositoryProvider);
+                return ListTile(
+                  leading: const Icon(Icons.logout),
+                  title: const Text('Çıkış Yap'),
+                  onTap: () async {
+                    await auth.signOut();
+                  },
+                );
               },
-            );
-          },
-        ),
-      ],
+            ),
+          ),
+        ],
+      ),
     );
   }
 }

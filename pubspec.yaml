@@ -43,6 +43,7 @@ dependencies:
   flutter_native_splash: ^2.3.7
   in_app_purchases_paywall_ui: ^1.0.1
   flutter_countdown_timer: ^4.1.0
+  gap: ^3.0.1
   
 
 
