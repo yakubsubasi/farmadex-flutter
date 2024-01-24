@@ -78,7 +78,7 @@ class PrescSearchPage extends StatelessWidget {
       body: SafeArea(
         child: CustomScrollView(slivers: [
           const SliverAppBar(
-            title: Text('Reçete Önerileri'),
+            surfaceTintColor: Colors.transparent,
             floating: true,
             snap: true,
           ),
@@ -213,9 +213,8 @@ class CustomSearchBar extends StatelessWidget {
             width: 10,
           ),
           Expanded(
-            child: Text(
-              hintText,
-            ),
+            child:
+                Text(hintText, style: Theme.of(context).textTheme.titleMedium),
           ),
         ],
       ),

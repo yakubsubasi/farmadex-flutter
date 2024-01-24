@@ -34,7 +34,7 @@ class SpecialityCard extends StatelessWidget {
         title: RichText(
           text: TextSpan(
               text: speciality.valeu,
-              style: Theme.of(context).textTheme.headlineMedium),
+              style: Theme.of(context).textTheme.titleLarge),
         ),
       ),
     );

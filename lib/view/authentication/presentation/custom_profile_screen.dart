@@ -20,7 +20,7 @@ class CustomProfileScreen extends ConsumerWidget {
       ),
       providers: authProviders,
       children: const [
-        UpgradeToProSection(isProMember: isProMember),
+        // UpgradeToProSection(isProMember: isProMember),
         SizedBox(
           height: 20,
         ),
