@@ -1,3 +1,5 @@
+// ignore_for_file: avoid_print
+
 import 'package:flutter/material.dart';
 import 'package:flutter_countdown_timer/flutter_countdown_timer.dart';
 import 'package:in_app_purchases_paywall_ui/in_app_purchases_paywall_ui.dart';
@@ -79,15 +81,15 @@ class _PaywallViewState extends State<PaywallView> {
                   },
                 )
               ])),
-          activePlanList: [
+          activePlanList: const [
             // links to the subscription overview on Android devices:
-            const GooglePlayGeneralActivePlan(),
+            GooglePlayGeneralActivePlan(),
 
             // links to the specific subscription on Android devices:
-            const GooglePlayActivePlan("yearly_pro", "com.tnx.packed"),
+            GooglePlayActivePlan("yearly_pro", "com.tnx.packed"),
 
             // links to the subscription overview on iOS devices
-            const AppleAppStoreActivePlan(),
+            AppleAppStoreActivePlan(),
           ],
           // set true if subscriptions are loading
           isSubscriptionLoading: false,

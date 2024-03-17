@@ -10,8 +10,6 @@ class CustomProfileScreen extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final authProviders = ref.watch(authProvidersProvider);
-    const isProMember =
-        false; // Replace with your logic to determine if the user is a Pro member
 
     return ProfileScreen(
       showDeleteConfirmationDialog: true,

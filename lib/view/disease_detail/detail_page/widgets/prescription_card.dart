@@ -17,7 +17,6 @@ class PrescriptionCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return Builder(builder: (context) {
       return Card(
-        margin: const EdgeInsets.all(10),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -51,7 +50,11 @@ class PrescriptionCard extends StatelessWidget {
                       ),
                       const SizedBox(width: 10),
                       Flexible(
-                        child: Text(prescription.name ?? ' '),
+                        child: Text(prescription.name ?? ' ',
+                            style: const TextStyle(
+                              fontWeight: FontWeight.w600,
+                              fontSize: 14,
+                            )),
                       )
                     ],
                   ),

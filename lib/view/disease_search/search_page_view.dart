@@ -121,6 +121,11 @@ class PrescSearchPage extends StatelessWidget {
             ),
           ),
           SliverToBoxAdapter(
+            child: Divider(
+              color: Theme.of(context).primaryColor.withOpacity(0.8),
+            ),
+          ),
+          SliverToBoxAdapter(
               child: Padding(
             padding: const EdgeInsets.fromLTRB(16, 8, 16, 8),
             child: Text('Kategoriler',
