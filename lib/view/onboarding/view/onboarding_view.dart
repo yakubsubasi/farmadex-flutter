@@ -1,6 +1,8 @@
+import 'package:farmadex/view/authentication/data/firebase_auth_repository.dart';
+import 'package:farmadex/view/authentication/domain/app_user.dart';
 import 'package:farmadex/view/onboarding/providers/app_user_provider/app_user_provider.dart';
 import 'package:farmadex/view/onboarding/providers/onboarding_state_provider/onboarding_state_provider.dart';
-import 'package:farmadex/view/onboarding/providers/submit/on_submit.dart';
+import 'package:firebase_auth/firebase_auth.dart' as auth;
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:introduction_screen/introduction_screen.dart';
@@ -40,8 +42,9 @@ class _OnboardPageState extends ConsumerState<OnboardPage> {
       showBackButton: true,
       back: const Text("Geri"),
       onDone: () async {
-        ref.watch(onSubmitProvider);
-        ref.watch(appUserProviderProvider.notifier).checkUser();
+        ref.read(appUserRepositoryProvider.notifier).createUser(_createUser(
+            ref.read(firebaseAuthProvider).currentUser!,
+            ref.read(onboardingStateProviderProvider)));
       },
       next: const Text("İleri"),
       done: const Text("Bitti"),
@@ -134,7 +137,7 @@ class _OnboardPageState extends ConsumerState<OnboardPage> {
                           .watch(onboardingStateProviderProvider.notifier)
                           .changeUserType(UserType.student);
                     },
-                    child: const Text('Tığ Öğrencisi'),
+                    child: const Text('Tıp Öğrencisi'),
                   ),
                   const SizedBox(
                     width: 10,
@@ -262,4 +265,18 @@ class CustomSelectableButton extends StatelessWidget {
               child: child)),
     );
   }
+}
+
+AppUser _createUser(auth.User currentUser, OnboardingModel onboardstate) {
+  return AppUser(
+    email: currentUser.email!,
+    name: onboardstate.name,
+    uid: currentUser.uid,
+    isPremium: false,
+    isOnboarded: true,
+    classGrade: onboardstate.classNumber,
+    speciality: onboardstate.speciality,
+    userType: onboardstate.userType,
+    registerDate: DateTime.now(),
+  );
 }

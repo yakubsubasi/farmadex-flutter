@@ -4,14 +4,14 @@ import 'package:farmadex_models/farmadex_models.dart';
 import 'package:farmadex/view/disease_detail/detail_page/detail_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:hive_flutter/hive_flutter.dart';
+import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 import 'category_detail_page.dart';
 
 // this widget is a gate to fetch data from supabase
 
-class PrescsPage extends ConsumerWidget {
-  const PrescsPage({super.key});
+class PrescsPageGate extends ConsumerWidget {
+  const PrescsPageGate({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -23,7 +23,34 @@ class PrescsPage extends ConsumerWidget {
           );
         },
         error: (error, stackTrace) {
-          return Text(error.toString());
+          WidgetsBinding.instance.addPostFrameCallback((_) {
+            ScaffoldMessenger.of(context).showSnackBar(
+              const SnackBar(
+                content: Text('Bağlantı sağlayarak tekrar deneyin'),
+              ),
+            );
+          });
+          // Navigate to MainPage(); with no transition
+          return Scaffold(
+            appBar: AppBar(),
+            body: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                const Center(
+                  child: Text('İnternet bağlantısı yok.'),
+                ),
+                const SizedBox(
+                  height: 20,
+                ),
+                ElevatedButton(
+                  onPressed: () {
+                    ref.refresh(getDiseasesProvider);
+                  },
+                  child: const Text('Yeniden dene'),
+                ),
+              ],
+            ),
+          );
         },
         loading: () => const Center(
               child: CircularProgressIndicator(),
@@ -32,13 +59,12 @@ class PrescsPage extends ConsumerWidget {
 }
 
 class PrescSearchPage extends StatelessWidget {
-  PrescSearchPage({
+  const PrescSearchPage({
     required this.diseases,
     super.key,
   });
 
   final List<Disease> diseases;
-  final searchHistoryBox = Hive.box<String>('searchHistory');
 
   @override
   Widget build(BuildContext context) {
@@ -52,7 +78,7 @@ class PrescSearchPage extends StatelessWidget {
       body: SafeArea(
         child: CustomScrollView(slivers: [
           const SliverAppBar(
-            title: Text('Reçete Önerileri'),
+            surfaceTintColor: Colors.transparent,
             floating: true,
             snap: true,
           ),
@@ -63,11 +89,7 @@ class PrescSearchPage extends StatelessWidget {
                 text: TextSpan(
                   children: [
                     TextSpan(
-                      text: 'Toplam ${diseases.length} Hastalık \nİçin Güncel ',
-                      style: Theme.of(context).textTheme.headlineLarge,
-                    ),
-                    TextSpan(
-                      text: 'Reçete ',
+                      text: 'Reçete ara\n',
                       style:
                           Theme.of(context).textTheme.headlineLarge?.copyWith(
                                 color: Theme.of(context).primaryColor,
@@ -75,9 +97,10 @@ class PrescSearchPage extends StatelessWidget {
                               ),
                     ),
                     TextSpan(
-                      text: 'Önerileri',
-                      style: Theme.of(context).textTheme.headlineLarge,
-                    )
+                      text:
+                          'Toplam ${diseases.map((disease) => disease.prescriptions!.length).reduce((a, b) => a + b)} reçete bulundu ',
+                      style: Theme.of(context).textTheme.titleMedium,
+                    ),
                   ],
                 ),
               ),
@@ -89,17 +112,17 @@ class PrescSearchPage extends StatelessWidget {
               child: SearchAnchor(
                 suggestionsBuilder:
                     (BuildContext context, SearchController controller) {
-                  if (controller.text.isEmpty) {
-                    if (searchHistoryBox.isNotEmpty) {
-                      return getHistoryList(controller);
-                    }
-                  }
                   return getSuggestions(context, controller);
                 },
                 builder: (BuildContext context, SearchController controller) {
                   return const CustomSearchBar();
                 },
               ),
+            ),
+          ),
+          SliverToBoxAdapter(
+            child: Divider(
+              color: Theme.of(context).primaryColor.withOpacity(0.8),
             ),
           ),
           SliverToBoxAdapter(
@@ -137,33 +160,17 @@ class PrescSearchPage extends StatelessWidget {
     );
   }
 
-  Iterable<Widget> getHistoryList(SearchController controller) {
-    return searchHistoryBox.values
-        .cast<String>()
-        .map(
-          (String disease) => ListTile(
-            leading: const Icon(Icons.history),
-            title: Text(disease),
-            trailing: IconButton(
-              icon: const Icon(Icons.call_missed),
-              onPressed: () {
-                controller.text = disease;
-
-                controller.selection =
-                    TextSelection.collapsed(offset: controller.text.length);
-              },
-            ),
-          ),
-        )
-        .toList()
-        .reversed;
-  }
-
-  Iterable<Widget> getSuggestions(BuildContext context, controller) {
+  FutureOr<Iterable<Widget>> getSuggestions(
+      BuildContext context, controller) async {
     final String input = controller.value.text.toLowerCase();
 
+    await Future.delayed(
+        const Duration(microseconds: 500)); // Simulating a delay
+
     return diseases
-        .where((Disease disease) => disease.name!.toLowerCase().contains(input))
+        .where((Disease disease) => (disease.searchText != null
+            ? disease.searchText!.toLowerCase().contains(input)
+            : disease.name!.toLowerCase().contains(input)))
         .map(
           (Disease filteredDisease) => ListTile(
             leading: const Icon(Icons.medical_services),
@@ -172,22 +179,14 @@ class PrescSearchPage extends StatelessWidget {
               Icons.arrow_forward_ios,
             ),
             onTap: () {
-              handleSelection(context, filteredDisease);
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) =>
+                          DiseaseDetailPage(disease: filteredDisease)));
             },
           ),
         );
-  }
-
-  void handleSelection(BuildContext context, Disease filteredDisease) {
-    if (searchHistoryBox.length >= 5) {
-      searchHistoryBox.deleteAt(searchHistoryBox.length - 1);
-    }
-    searchHistoryBox.add(filteredDisease.name!);
-
-    Navigator.push(
-        context,
-        MaterialPageRoute(
-            builder: (context) => DiseaseDetailPage(disease: filteredDisease)));
   }
 }
 
@@ -219,9 +218,8 @@ class CustomSearchBar extends StatelessWidget {
             width: 10,
           ),
           Expanded(
-            child: Text(
-              hintText,
-            ),
+            child:
+                Text(hintText, style: Theme.of(context).textTheme.titleMedium),
           ),
         ],
       ),

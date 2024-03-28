@@ -4,8 +4,10 @@ import 'package:farmadex/view/authentication/data/firebase_auth_repository.dart'
 import 'package:farmadex/view/authentication/presentation/custom_profile_screen.dart';
 import 'package:farmadex/view/authentication/presentation/custom_sign_in_screen.dart';
 import 'package:farmadex/view/feed_back_page/feed_back_view.dart';
+import 'package:farmadex/view/in_app_purchase/paywall/paywall_view.dart';
 import 'package:farmadex/view/landing_page/landing_page.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
@@ -61,6 +63,11 @@ GoRouter goRouter(GoRouterRef ref) {
           pageBuilder: (context, state) => const CupertinoPage(
             child: CustomSignInScreen(),
           ),
+        ),
+        GoRoute(
+          path: '/paywall',
+          pageBuilder: (context, state) =>
+              const MaterialPage(child: PaywallView()),
         ),
         GoRoute(
             path: '/profile',

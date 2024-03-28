@@ -1,37 +1,67 @@
-import 'package:farmadex/core/supabase_client/supabase_client_provider.dart';
 import 'package:farmadex/view/authentication/data/firebase_auth_repository.dart';
 import 'package:farmadex/view/authentication/domain/app_user.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+
 part 'app_user_provider.g.dart';
 
 @Riverpod(keepAlive: true)
-class AppUserProvider extends _$AppUserProvider {
+class AppUserRepository extends _$AppUserRepository {
+  final _firebaseFirestore = FirebaseFirestore.instance;
+
   @override
-  AppUser? build() {
-    checkUser();
+  FutureOr<AppUser?>? build() async {
+    return _fetchUser();
   }
 
-  Future<bool> checkUser() async {
-    final client = ref.watch(supabaseClientProvider);
-    final fbUser = ref.watch(authRepositoryProvider).currentUser;
+  /// fetch if user exists in cloud firestore database in 'users' collection
+  ///
+  Future<AppUser?> _fetchUser() async {
+    final user = ref.watch(firebaseAuthProvider).currentUser;
 
-    try {
-      AppUser? appUser = await client
-          .from('users')
-          .select()
-          .eq('email', fbUser!.email)
-          .single()
-          .then((value) => AppUser.fromJson(value));
+    if (user != null) {
+      final userDoc =
+          await _firebaseFirestore.collection('users').doc(user.uid).get();
 
-      state = appUser;
-      return true;
-    } catch (e) {
-      state = null;
-      return false;
+      // ignore: unnecessary_null_comparison
+      if (userDoc.data() != null) {
+        final appUser =
+            AppUser.fromJson(userDoc.data() as Map<String, dynamic>);
+        return appUser;
+      }
+    } else {
+      return null;
     }
+    return null;
   }
 
-  void update(AppUser user) {
-    state = user;
+  Future<void> updateUser(AppUser user) async {
+    state = const AsyncValue.loading();
+    state = await AsyncValue.guard(() async {
+      await _firebaseFirestore
+          .collection('users')
+          .doc(user.uid)
+          .update(user.toJson());
+      return user;
+    });
+  }
+
+  Future<void> createUser(AppUser user) async {
+    state = const AsyncValue.loading();
+    state = await AsyncValue.guard(() async {
+      await _firebaseFirestore
+          .collection('users')
+          .doc(user.uid)
+          .set(user.toJson());
+      return user;
+    });
+  }
+
+  Future<void> deleteUser(AppUser user) async {
+    state = const AsyncValue.loading();
+    state = await AsyncValue.guard(() async {
+      await _firebaseFirestore.collection('users').doc(user.uid).delete();
+      return user;
+    });
   }
 }

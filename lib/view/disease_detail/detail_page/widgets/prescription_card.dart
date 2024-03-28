@@ -17,7 +17,6 @@ class PrescriptionCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return Builder(builder: (context) {
       return Card(
-        margin: const EdgeInsets.all(10),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -50,7 +49,13 @@ class PrescriptionCard extends StatelessWidget {
                         ),
                       ),
                       const SizedBox(width: 10),
-                      Text(prescription.name ?? ' '),
+                      Flexible(
+                        child: Text(prescription.name ?? ' ',
+                            style: const TextStyle(
+                              fontWeight: FontWeight.w600,
+                              fontSize: 14,
+                            )),
+                      )
                     ],
                   ),
                   Text(prescription.shortDescription ?? ' '),
@@ -89,7 +94,9 @@ class PrescriptionCard extends StatelessWidget {
                 );
               },
             ),
-            if (prescription.explanation != null) ...[
+            if (prescription.explanation != null &&
+                prescription.explanation!.isNotEmpty &&
+                prescription.explanation!.first != "") ...[
               const Divider(
                 thickness: 2,
                 height: 20,
@@ -150,7 +157,7 @@ class MedicineSection extends StatelessWidget {
                   ),
                 ),
                 TextSpan(
-                  text: '${medicine.howOften} x',
+                  text: '${medicine.howOften.toString()} x',
                 ),
                 TextSpan(
                   text: ' ${medicine.howMany}      ',
