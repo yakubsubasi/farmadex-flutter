@@ -38,14 +38,27 @@ class DiseaseDetailPage extends StatelessWidget {
                     (index) =>
                         WarningCard(warningText: disease.warnings![index]),
                   ),
-              const SizedBox(height: 10.0), // Add a SizedBox here
               ...List.generate(
                 disease.prescriptions?.length ?? 0,
-                (index) => PrescriptionCard(
-                  index: index,
-                  prescription: disease.prescriptions![index],
+                (index) => Column(
+                  children: [
+                    PrescriptionCard(
+                      index: index,
+                      prescription: disease.prescriptions![index],
+                    ),
+                    if (index != (disease.prescriptions?.length ?? 1) - 1)
+                      SizedBox(height: 10),
+                  ],
                 ),
               ),
+              const SizedBox(
+                height: 10,
+              ),
+              WarningCard(
+                  title: 'Uyarı',
+                  color: Theme.of(context).colorScheme.primaryContainer,
+                  warningText:
+                      'Bu reçeteler sadece tıp hekimleri için örnek reçete olarak hazırlanmıştır. Tavsiye niteliği taşımaz. Çünkü aynı hastalıkta bile her hastanın reçetesi kendine özeldir. Sorumluluk yazan kişiye aittir.')
             ],
           ),
         ),
@@ -57,21 +70,38 @@ class DiseaseDetailPage extends StatelessWidget {
 class WarningCard extends StatelessWidget {
   final String warningText;
 
-  const WarningCard({Key? key, required this.warningText}) : super(key: key);
+  final Color? color;
+
+  final String? title;
+  const WarningCard(
+      {Key? key, required this.warningText, this.color, this.title})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Card(
-      color: Theme.of(context).colorScheme.errorContainer,
+      color: color ?? Theme.of(context).colorScheme.errorContainer,
       child: ListTile(
-        leading: Icon(
-          Icons.warning,
-          color: Theme.of(context).colorScheme.error,
-          size: 40.0,
+        leading: Column(
+          children: [
+            if (title != null)
+              Text(
+                title!,
+                style: const TextStyle(
+                  fontSize: 11,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+            Icon(
+              Icons.warning,
+              color: Theme.of(context).colorScheme.error,
+              size: 40.0,
+            ),
+          ],
         ),
         title: Text(
           warningText,
-          style: TextStyle(
+          style: const TextStyle(
             fontSize: 12,
           ),
         ),
