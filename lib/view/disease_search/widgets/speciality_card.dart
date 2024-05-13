@@ -19,8 +19,7 @@ class SpecialityCard extends StatelessWidget {
       child: ListTile(
         onTap: onTap,
         contentPadding: const EdgeInsets.symmetric(
-          vertical: 10.0,
-          horizontal: 8.0,
+          horizontal: 16.0,
         ),
         horizontalTitleGap: 25,
         hoverColor: Theme.of(context).hintColor,
@@ -28,13 +27,13 @@ class SpecialityCard extends StatelessWidget {
           tag: speciality.toString(),
           child: Image.asset(
             speciality.imagepath,
-            width: 50,
+            width: 40,
           ),
         ),
         title: RichText(
           text: TextSpan(
               text: speciality.valeu,
-              style: Theme.of(context).textTheme.titleLarge),
+              style: Theme.of(context).textTheme.titleMedium),
         ),
       ),
     );

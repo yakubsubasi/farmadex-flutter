@@ -24,9 +24,12 @@ class PrescsPageGate extends ConsumerWidget {
         },
         error: (error, stackTrace) {
           WidgetsBinding.instance.addPostFrameCallback((_) {
-            ScaffoldMessenger.of(context).showSnackBar(
-              const SnackBar(
-                content: Text('Bağlantı sağlayarak tekrar deneyin'),
+            final scaffoldMessenger = ScaffoldMessenger.of(context);
+            scaffoldMessenger.hideCurrentSnackBar();
+            scaffoldMessenger.showSnackBar(
+              SnackBar(
+                content: Text(
+                    'Bağlantı sağlayarak tekrar deneyin n/ Error: ${error.toString()}'),
               ),
             );
           });
