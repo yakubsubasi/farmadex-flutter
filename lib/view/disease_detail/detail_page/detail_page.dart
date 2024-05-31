@@ -83,6 +83,8 @@ class WarningCard extends StatelessWidget {
       color: color ?? Theme.of(context).colorScheme.errorContainer,
       child: ListTile(
         leading: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             if (title != null)
               Text(
