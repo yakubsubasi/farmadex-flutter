@@ -85,8 +85,12 @@ flutter_native_splash:
   web: false
 
 
+#flutter pub run flutter_launcher_icons:main
 flutter_launcher_icons:
   android: "launcher_icon"
-  ios: true
   image_path: "assets/logo/monobase_logo.png"
   min_sdk_android: 21 # android min sdk min:16, default 21
+
+  ios: true
+  image_path_ios: "assets/logo/monobase_logo_white_bg.png"
+  remove_alpha_ios: true
