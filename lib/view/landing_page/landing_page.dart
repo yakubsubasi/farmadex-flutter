@@ -79,7 +79,7 @@ class MainPage extends StatelessWidget {
                 isActive: false,
                 onTap: () {},
                 icon: Icons.book,
-                buttonText: 'Eğitim Programları',
+                buttonText: 'İlaç Uygulama Rehberi',
               ),
               const SizedBox(
                 height: 4,

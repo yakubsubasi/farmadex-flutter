@@ -47,7 +47,7 @@ class DiseaseDetailPage extends StatelessWidget {
                       prescription: disease.prescriptions![index],
                     ),
                     if (index != (disease.prescriptions?.length ?? 1) - 1)
-                      SizedBox(height: 10),
+                      const SizedBox(height: 10),
                   ],
                 ),
               ),

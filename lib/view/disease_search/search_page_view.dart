@@ -140,7 +140,7 @@ class PrescSearchPage extends StatelessWidget {
               specialities.length,
               (index) => SliverToBoxAdapter(
                   child: Padding(
-                      padding: const EdgeInsets.fromLTRB(16, 8, 16, 8),
+                      padding: const EdgeInsets.fromLTRB(16, 4, 16, 4),
                       child: SpecialityCard(
                         speciality: specialities[index],
                         onTap: () {

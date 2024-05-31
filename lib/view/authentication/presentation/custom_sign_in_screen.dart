@@ -6,20 +6,20 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import '../../agreement_page/agreement_page_view.dart';
-import 'auth_providers.dart';
 
 class CustomSignInScreen extends ConsumerWidget {
   const CustomSignInScreen({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final authProviders = ref.watch(authProvidersProvider);
+    // final authProviders = ref.watch(authProvidersProvider);
     return SignInScreen(
       headerBuilder: (context, constrains, _) {
         return const SignInHeader();
       },
       showAuthActionSwitch: true,
-      providers: authProviders,
+
+      // providers: authProviders,
       footerBuilder: (context, action) {
         return const RegisterScreenFooter();
       },
