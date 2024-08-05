@@ -24,10 +24,10 @@ GoRouter goRouter(GoRouterRef ref) {
       redirect: (context, state) {
         final isLoggedIn = authRepository.currentUser != null;
         if (isLoggedIn) {
-          if (state.location.startsWith('/signIn')) {
+          if (state.uri.toString().startsWith('/signIn')) {
             return '/';
           }
-        } else if (state.location.startsWith('/')) {
+        } else if (state.uri.toString().startsWith('/')) {
           return '/signIn';
         }
         return null;

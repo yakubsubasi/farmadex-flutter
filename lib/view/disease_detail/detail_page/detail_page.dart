@@ -4,9 +4,9 @@ import 'package:flutter/material.dart';
 
 class DiseaseDetailPage extends StatelessWidget {
   const DiseaseDetailPage({
-    Key? key,
+    super.key,
     required this.disease,
-  }) : super(key: key);
+  });
 
   final Disease disease;
 
@@ -74,8 +74,7 @@ class WarningCard extends StatelessWidget {
 
   final String? title;
   const WarningCard(
-      {Key? key, required this.warningText, this.color, this.title})
-      : super(key: key);
+      {super.key, required this.warningText, this.color, this.title});
 
   @override
   Widget build(BuildContext context) {

@@ -23,7 +23,7 @@ FutureOr<List<Disease>> getDiseases(GetDiseasesRef ref) async {
 
   List<Disease> diseases = List.from(
     response.map(
-      (e) => Disease.fromJson(e as Map<String, dynamic>),
+      (e) => Disease.fromJson(e),
     ),
   );
 

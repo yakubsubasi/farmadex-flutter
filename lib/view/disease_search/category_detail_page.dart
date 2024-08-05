@@ -5,8 +5,7 @@ import '../disease_detail/detail_page/detail_page.dart';
 
 class CategoryResultsPage extends StatelessWidget {
   const CategoryResultsPage(
-      {Key? key, required this.speciality, required this.diseases})
-      : super(key: key);
+      {super.key, required this.speciality, required this.diseases});
 
   final Speciality speciality;
   final List<Disease> diseases;

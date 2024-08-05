@@ -2,12 +2,12 @@ import 'package:flutter/material.dart';
 
 class HomePageButton extends StatelessWidget {
   const HomePageButton({
-    Key? key,
+    super.key,
     required this.buttonText,
     required this.icon,
     required this.onTap,
     this.isActive = true,
-  }) : super(key: key);
+  });
 
   final String buttonText;
   final IconData icon;

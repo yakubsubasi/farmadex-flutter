@@ -15,6 +15,6 @@ Future<String> fetchAgreement(FetchAgreementRef ref) async {
 class SupabaseService {
   static Future<String> fetchConst(String name, SupabaseClient client) async {
     final response = await client.from('consts').select().eq('name', name);
-    return response?[0]['value'] as String;
+    return response[0]['value'] as String;
   }
 }

@@ -5,10 +5,10 @@ import 'package:farmadex_models/farmadex_models.dart';
 
 class PrescriptionCard extends StatelessWidget {
   const PrescriptionCard({
-    Key? key,
+    super.key,
     required this.prescription,
     required this.index,
-  }) : super(key: key);
+  });
 
   final Prescription prescription;
   final int index;

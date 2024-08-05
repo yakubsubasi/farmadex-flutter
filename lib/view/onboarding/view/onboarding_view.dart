@@ -224,9 +224,9 @@ class _OnboardPageState extends ConsumerState<OnboardPage> {
 
 class InitialScreenIcon extends StatelessWidget {
   const InitialScreenIcon({
-    Key? key,
+    super.key,
     required this.icon,
-  }) : super(key: key);
+  });
 
   final IconData icon;
 
@@ -242,11 +242,11 @@ class CustomSelectableButton extends StatelessWidget {
   final bool isSelected;
 
   const CustomSelectableButton({
-    Key? key,
+    super.key,
     required this.onPressed,
     required this.child,
     required this.isSelected,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {
