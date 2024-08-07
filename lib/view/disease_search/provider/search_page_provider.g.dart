@@ -6,7 +6,7 @@ part of 'search_page_provider.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$getDiseasesHash() => r'367c0369d9df4fa51db511b8b9821beb8c1aa10c';
+String _$getDiseasesHash() => r'4e032db9546b406676aa456690bd90e513d2213b';
 
 /// See also [getDiseases].
 @ProviderFor(getDiseases)

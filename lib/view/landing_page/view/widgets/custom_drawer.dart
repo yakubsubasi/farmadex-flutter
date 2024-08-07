@@ -13,33 +13,41 @@ class CustomDrawer extends ConsumerWidget {
       child: Column(
         children: [
           Expanded(
-            child: ListView(
-              children: [
-                const CustomDrawerHeader(),
-                ListTile(
-                  leading: const Icon(Icons.account_circle),
-                  title: const Text('Profil'),
-                  onTap: () {
-                    // Navigate to profile page
-                    context.push('/profile');
-                  },
-                ),
-                ListTile(
-                  leading: const Icon(Icons.assignment),
-                  title: const Text('Kullanıcı Sözleşmesi'),
-                  onTap: () {
-                    // Navigate to agreement page
-                    context.push('/agreement');
-                  },
-                ),
-                ListTile(
-                  leading: const Icon(Icons.feedback),
-                  title: const Text('Bize Ulaşın'),
-                  onTap: () {
-                    context.push('/feedBack');
-                  },
-                ),
-              ],
+            child: Padding(
+              padding: const EdgeInsets.all(16.0),
+              child: ListView(
+                children: [
+                  const CustomDrawerHeader(),
+                  ListTile(
+                    leading: const Icon(Icons.account_circle),
+                    title: const Text('Profil'),
+                    onTap: () {
+                      context.pop();
+
+                      // Navigate to profile page
+                      context.push('/profile');
+                    },
+                  ),
+                  ListTile(
+                    leading: const Icon(Icons.assignment),
+                    title: const Text('Kullanıcı Sözleşmesi'),
+                    onTap: () {
+                      context.pop();
+                      // Navigate to agreement page
+                      context.push('/agreement');
+                    },
+                  ),
+                  ListTile(
+                    leading: const Icon(Icons.feedback),
+                    title: const Text('Bize Ulaşın'),
+                    onTap: () {
+                      context.pop();
+
+                      context.push('/feedBack');
+                    },
+                  ),
+                ],
+              ),
             ),
           ),
           SafeArea(

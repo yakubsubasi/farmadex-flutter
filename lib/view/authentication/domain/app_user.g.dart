@@ -14,7 +14,7 @@ _$AppUserImpl _$$AppUserImplFromJson(Map<String, dynamic> json) =>
       userType: $enumDecodeNullable(_$UserTypeEnumMap, json['user_type']),
       isPremium: json['is_premium'] as bool?,
       isOnboarded: json['is_onboarded'] as bool?,
-      classGrade: json['class_grade'] as int?,
+      classGrade: (json['class_grade'] as num?)?.toInt(),
       registerDate: json['register_date'] == null
           ? null
           : DateTime.parse(json['register_date'] as String),

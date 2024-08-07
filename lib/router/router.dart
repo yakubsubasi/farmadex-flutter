@@ -3,7 +3,7 @@ import 'package:farmadex/view/agreement_page/agreement_page_view.dart';
 import 'package:farmadex/view/authentication/data/firebase_auth_repository.dart';
 import 'package:farmadex/view/authentication/presentation/custom_profile_screen.dart';
 import 'package:farmadex/view/authentication/presentation/custom_sign_in_screen.dart';
-import 'package:farmadex/view/feed_back_page/feed_back_view.dart';
+import 'package:farmadex/view/feedback/ui/new_feedback/new_feedback_view.dart';
 import 'package:farmadex/view/landing_page/landing_page.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:go_router/go_router.dart';
@@ -51,8 +51,8 @@ GoRouter goRouter(GoRouterRef ref) {
         GoRoute(
           path: '/feedBack',
           name: AppRoute.feedBack.name,
-          pageBuilder: (context, state) => const CupertinoPage(
-            child: FeedBackPage(),
+          pageBuilder: (context, state) => CupertinoPage(
+            child: NewFeedbackView(),
           ),
         ),
         GoRoute(

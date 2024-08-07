@@ -4,7 +4,6 @@ import 'package:farmadex/view/authentication/presentation/auth_providers.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_ui_auth/firebase_ui_auth.dart';
 import 'package:firebase_ui_localizations/firebase_ui_localizations.dart';
-import 'package:firebase_ui_oauth_apple/firebase_ui_oauth_apple.dart';
 import 'package:firebase_ui_oauth_google/firebase_ui_oauth_google.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -27,8 +26,8 @@ void main() async {
   );
 
   FirebaseUIAuth.configureProviders([
-    EmailAuthProvider(),
-    AppleProvider(),
+    // EmailAuthProvider(),
+    // AppleProvider(),
     GoogleProvider(clientId: GOOGLE_CLIENT_ID),
   ]);
 
