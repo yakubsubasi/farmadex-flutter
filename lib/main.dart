@@ -4,7 +4,7 @@ import 'package:farmadex/view/authentication/presentation/auth_providers.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_ui_auth/firebase_ui_auth.dart';
 import 'package:firebase_ui_localizations/firebase_ui_localizations.dart';
-import 'package:firebase_ui_oauth_google/firebase_ui_oauth_google.dart';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:hive_flutter/hive_flutter.dart';
@@ -24,12 +24,6 @@ void main() async {
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
-
-  FirebaseUIAuth.configureProviders([
-    // EmailAuthProvider(),
-    // AppleProvider(),
-    GoogleProvider(clientId: GOOGLE_CLIENT_ID),
-  ]);
 
   await Hive.initFlutter();
   await Hive.openBox<String>('searchHistory');

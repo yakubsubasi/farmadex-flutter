@@ -61,7 +61,7 @@ class AppUserRepository extends _$AppUserRepository {
     state = const AsyncValue.loading();
     state = await AsyncValue.guard(() async {
       await _firebaseFirestore.collection('users').doc(user.uid).delete();
-      return user;
+      return null;
     });
   }
 }

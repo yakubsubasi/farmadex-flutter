@@ -1,5 +1,6 @@
 import 'package:farmadex/view/authentication/data/firebase_auth_repository.dart';
 import 'package:farmadex/view/onboarding/providers/app_user_provider/app_user_provider.dart';
+import 'package:firebase_ui_auth/firebase_ui_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
@@ -54,12 +55,16 @@ class CustomDrawer extends ConsumerWidget {
             child: Consumer(
               builder: (BuildContext context, WidgetRef ref, Widget? child) {
                 final auth = ref.watch(authRepositoryProvider);
-                return ListTile(
-                  leading: const Icon(Icons.logout),
-                  title: const Text('Çıkış Yap'),
-                  onTap: () async {
-                    await auth.signOut();
-                  },
+
+                return Padding(
+                  padding: const EdgeInsets.symmetric(
+                      horizontal: 16.0, vertical: 8.0),
+                  child: Align(
+                    alignment: Alignment.bottomLeft,
+                    child: SignOutButton(
+                      variant: ButtonVariant.text,
+                    ),
+                  ),
                 );
               },
             ),
@@ -76,9 +81,9 @@ class CustomDrawerHeader extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final photoURL = ref.watch(firebaseAuthProvider).currentUser?.photoURL;
-
     final name = ref.watch(firebaseAuthProvider).currentUser?.displayName;
-    final email = ref.watch(appUserRepositoryProvider).asData?.value?.email;
+    // final name = ref.watch(firebaseAuthProvider).currentUser?.displayName;
+    final email = ref.watch(firebaseAuthProvider).currentUser?.email;
 
     return DrawerHeader(
       child: Column(

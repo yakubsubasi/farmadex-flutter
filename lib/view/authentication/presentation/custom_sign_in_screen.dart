@@ -1,5 +1,7 @@
 import 'package:farmadex/core/consts/app_consts.dart';
+import 'package:farmadex/main.dart';
 import 'package:farmadex/view/authentication/data/firebase_auth_repository.dart';
+import 'package:farmadex/view/authentication/presentation/auth_providers.dart';
 import 'package:firebase_ui_auth/firebase_ui_auth.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
@@ -12,14 +14,13 @@ class CustomSignInScreen extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    // final authProviders = ref.watch(authProvidersProvider);
+    final authProviders = ref.watch(authProvidersProvider);
     return SignInScreen(
       headerBuilder: (context, constrains, _) {
         return const SignInHeader();
       },
       showAuthActionSwitch: true,
-
-      // providers: authProviders,
+      providers: authProviders,
       footerBuilder: (context, action) {
         return const RegisterScreenFooter();
       },

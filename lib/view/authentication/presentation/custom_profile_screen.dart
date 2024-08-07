@@ -1,3 +1,6 @@
+import 'package:farmadex/view/authentication/presentation/auth_providers.dart';
+import 'package:farmadex/view/onboarding/providers/app_user_provider/app_user_provider.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_ui_auth/firebase_ui_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -8,13 +11,13 @@ class CustomProfileScreen extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final authProviders = ref.watch(authProvidersProvider);
     return ProfileScreen(
       showDeleteConfirmationDialog: true,
+      providers: authProviders,
       appBar: AppBar(
         title: const Text('Profil'),
       ),
-      // providers: authProviders,
-
       children: const [
         // UpgradeToProSection(isProMember: isProMembsier),
         SizedBox(
